@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Junior Career Program — CareerLaunchpad</title>
+  <meta name="description" content="For Class 6th to early college students: explore real careers before choosing a stream.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&family=Instrument+Serif&display=swap" rel="stylesheet">
+  <style>
+    /* Updated professional orange palette */
+    :root {
+      --brand: #c94f00;
+      --brand-hover: #b34400;
+      --brand-soft: #fbe8db;
+      --ink: #171312;
+      --ink-soft: #27211f;
+      --surface: #f8f6f4;
+      --text: #232323;
+      --text-muted: #6b6b6b;
+      --line: #e6e2de;
+    }
+    body { font-family: 'Inter', sans-serif; color: var(--text); }
+    h1, h2, h3, h4 { font-family: 'Manrope', sans-serif; letter-spacing: -0.02em; }
+    .italic-serif { font-family: 'Instrument Serif', serif; font-style: italic; }
+    .container-x { max-width: 1280px; margin-inline: auto; padding-inline: 24px; }
+    @media (min-width: 1024px) { .container-x { padding-inline: 60px; } }
+    .btn-brand { background: var(--brand); color: #fff; }
+    .btn-brand:hover { background: var(--brand-hover); }
+    .card-lift { transition: 0.25s; }
+    .card-lift:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -20px rgba(201, 79, 0, 0.25); }
+    [data-lucide] { width: 1em; height: 1em; stroke-width: 2; }
+
+    /* HERO: coded gradient + diagonal light rays to match the reference banner */
+    .hero-banner {
+      position: relative;
+      background: radial-gradient(120% 140% at 20% 15%, #ff7a1a 0%, #e85a00 32%, #c94f00 62%, #a83f00 100%);
+    }
+    .hero-banner .container-x { position: relative; z-index: 1; }
+    .hero-rays {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .hero-rays::before,
+    .hero-rays::after {
+      content: "";
+      position: absolute;
+      top: -40%;
+      width: 140px;
+      height: 220%;
+      background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.16) 50%, rgba(255,255,255,0) 100%);
+      transform: rotate(20deg);
+    }
+    .hero-rays::before { right: 8%; }
+    .hero-rays::after { right: 22%; width: 60px; background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.10) 50%, rgba(255,255,255,0) 100%); }
+  </style>
+</head>
+<body class="bg-white">
+
+<!-- NAVBAR -->
+<header id="nav" class="sticky top-0 z-50 w-full bg-white/95 backdrop-blur border-b" style="border-color:var(--line)">
+  <div class="w-full flex h-[72px] items-center justify-between pl-0 pr-4 md:pr-8 lg:pr-16">
+    <a href="index.html" class="flex items-center gap-2 pl-8 md:pl-14 lg:pl-24">
+      <span class="flex h-8 w-8 items-center justify-center rounded-lg" style="background:var(--brand)"><i data-lucide="graduation-cap" class="text-white text-[20px]"></i></span>
+      <span class="text-[19px] font-bold" style="color:var(--ink)">Career<span style="color:var(--brand)">Launchpad</span></span>
+    </a>
+    <div class="hidden lg:flex items-center gap-8 ml-auto">
+      <nav class="flex items-center gap-7 text-[15.5px] font-medium" style="color:var(--text)">
+        <a href="career-starter.html" class="hover:text-[color:var(--brand)]">Career Starter</a>
+        <a href="junior-career.html" class="hover:text-[color:var(--brand)]" style="color:var(--brand)">Junior Career</a>
+        <a href="pay-after-placement.html" class="hover:text-[color:var(--brand)]">Pay After Placement</a>
+        <a href="internships.html" class="hover:text-[color:var(--brand)]">Internships</a>
+        <a href="experienced.html" class="hover:text-[color:var(--brand)]">Experienced</a>
+      </nav>
+      <a href="schedule-call.html" class="btn-brand inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[14.5px] font-semibold"><i data-lucide="phone" class="text-[17px]"></i> Schedule Call</a>
+    </div>
+    <button onclick="document.getElementById('mnav').classList.toggle('hidden')" class="lg:hidden p-2 rounded-lg ml-auto" style="color:var(--ink)"><i data-lucide="menu"></i></button>
+  </div>
+  <div id="mnav" class="hidden lg:hidden border-t" style="border-color:var(--line)">
+    <div class="container-x flex flex-col gap-1 py-4 text-[15px] font-medium" style="color:var(--text)">
+      <a href="career-starter.html" class="px-3 py-2.5">Career Starter</a>
+      <a href="junior-career.html" class="px-3 py-2.5">Junior Career</a>
+      <a href="pay-after-placement.html" class="px-3 py-2.5">Pay After Placement</a>
+      <a href="internships.html" class="px-3 py-2.5">Internships</a>
+      <a href="experienced.html" class="px-3 py-2.5">Experienced</a>
+      <a href="schedule-call.html" class="btn-brand mt-2 flex items-center justify-center gap-2 rounded-full px-4 py-3 text-[14px]"><i data-lucide="phone"></i> Schedule Call</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO (coded to match the reference banner exactly) -->
+<section class="relative overflow-hidden hero-banner">
+  <div class="hero-rays"></div>
+  <div class="container-x relative py-24 md:py-32 text-center">
+    <span class="inline-flex rounded-full border border-white/70 px-5 py-2 text-[12px] font-bold uppercase tracking-[0.14em] text-white">Praesent Quam Ipsum</span>
+    <h1 class="mx-auto mt-6 max-w-4xl text-[36px] md:text-[56px] font-extrabold leading-[1.1] text-white">
+      Junior Career
+    </h1>
+    <p class="mx-auto mt-6 max-w-2xl text-[16px] md:text-[17px] leading-relaxed text-white/90">
+      Aenean sollicitudin laoreet massa vitae egestas. Donec condimentum, diam a luctus facilisis, magna ex vestibulum tellus, ut molestie ipsum quam in tortor.
+    </p>
+  </div>
+</section>
+
+<!-- INTRO SECTION: left-aligned professional paragraph -->
+<section class="py-16 bg-white">
+  <div class="container-x">
+    <div class="max-w-4xl mx-auto text-center">
+      <span class="inline-flex rounded-full px-4 py-1.5 text-[11.5px] font-semibold uppercase tracking-[0.14em]"
+            style="background:var(--brand-soft);color:var(--brand);border:1px solid rgba(201,79,0,.2)">
+        For Class 6th to Early College Students
+      </span>
+      <h2 class="mt-4 text-[34px] md:text-[42px] font-bold" style="color:var(--ink)">
+        Junior Career <span class="italic-serif" style="color:var(--brand)">Program</span>
+      </h2>
+      <!-- Single concise line replacing the long paragraph -->
+      <div class="mt-4 text-[16px] md:text-[17px] leading-relaxed" style="color:var(--text-muted)">
+        <p>
+          Don't choose your stream blindly—experience real work before deciding between Science, Commerce, or any career path.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEPARATE SECTION: How Do Most Students Choose Their Stream? -->
+<section class="py-14" style="background:var(--surface)">
+  <div class="container-x">
+    <h3 class="text-center text-[22px] md:text-[28px] font-bold" style="color:var(--ink)">How Do Most Students Choose Their Stream?</h3>
+    <div class="mt-8 grid gap-6 md:grid-cols-3">
+      <div class="card-lift relative overflow-hidden rounded-2xl shadow-md">
+        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800" class="h-64 w-full object-cover" alt="Student studying">
+        <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-5 text-white">
+          <div class="text-[17px] font-bold">Based on Marks</div>
+          <div class="text-[13px] opacity-90">Not on actual interest or passion</div>
+        </div>
+      </div>
+      <div class="card-lift relative overflow-hidden rounded-2xl shadow-md">
+        <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800" class="h-64 w-full object-cover" alt="Family discussion">
+        <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-5 text-white">
+          <div class="text-[17px] font-bold">Family Pressure</div>
+          <div class="text-[13px] opacity-90">Society expectations override personal choice</div>
+        </div>
+      </div>
+      <div class="card-lift relative overflow-hidden rounded-2xl shadow-md">
+        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800" class="h-64 w-full object-cover" alt="Confused student">
+        <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-5 text-white">
+          <div class="text-[17px] font-bold">Limited Awareness</div>
+          <div class="text-[13px] opacity-90">Don't know the full range of options available</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAREER DOMAINS SECTION -->
+<section class="py-14 bg-white">
+  <div class="container-x">
+    <h3 class="text-center text-[26px] md:text-[32px] font-bold" style="color:var(--ink)">Explore Multiple Career Domains</h3>
+    <p class="mt-2 text-center text-[14px]" style="color:var(--text-muted)">Get hands-on exposure to real-world careers across industries</p>
+    <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="card-lift flex items-center gap-3 rounded-xl bg-white p-4" style="border:1px solid var(--line)"><span class="flex h-9 w-9 items-center justify-center rounded-lg" style="background:var(--brand-soft);color:var(--brand)"><i data-lucide="users-2"></i></span><span class="text-[13px] font-semibold" style="color:var(--ink)">HR & Business Dev</span></div>
+      <div class="card-lift flex items-center gap-3 rounded-xl bg-white p-4" style="border:1px solid var(--line)"><span class="flex h-9 w-9 items-center justify-center rounded-lg" style="background:var(--brand-soft);color:var(--brand)"><i data-lucide="briefcase"></i></span><span class="text-[13px] font-semibold" style="color:var(--ink)">Digital Marketing & Sales</span></div>
+      <div class="card-lift flex items-center gap-3 rounded-xl bg-white p-4" style="border:1px solid var(--line)"><span class="flex h-9 w-9 items-center justify-center rounded-lg" style="background:var(--brand-soft);color:var(--brand)"><i data-lucide="code"></i></span><span class="text-[13px] font-semibold" style="color:var(--ink)">Web/App Development</span></div>
+      <div class="card-lift flex items-center gap-3 rounded-xl bg-white p-4" style="border:1px solid var(--line)"><span class="flex h-9 w-9 items-center justify-center rounded-lg" style="background:var(--brand-soft);color:var(--brand)"><i data-lucide="palette"></i></span><span class="text-[13px] font-semibold" style="color:var(--ink)">Graphic Design & Content</span></div>
+      <div class="card-lift flex items-center gap-3 rounded-xl bg-white p-4" style="border:1px solid var(--line)"><span class="flex h-9 w-9 items-center justify-center rounded-lg" style="background:var(--brand-soft);color:var(--brand)"><i data-lucide="database"></i></span><span class="text-[13px] font-semibold" style="color:var(--ink)">Data Science & AI</span></div>
+      <div class="card-lift flex items-center gap-3 rounded-xl bg-white p-4" style="border:1px solid var(--line)"><span class="flex h-9 w-9 items-center justify-center rounded-lg" style="background:var(--brand-soft);color:var(--brand)"><i data-lucide="line-chart"></i></span><span class="text-[13px] font-semibold" style="color:var(--ink)">Finance & Stock Market</span></div>
+      <div class="card-lift flex items-center gap-3 rounded-xl bg-white p-4" style="border:1px solid var(--line)"><span class="flex h-9 w-9 items-center justify-center rounded-lg" style="background:var(--brand-soft);color:var(--brand)"><i data-lucide="rocket"></i></span><span class="text-[13px] font-semibold" style="color:var(--ink)">Startups & Entrepreneurship</span></div>
+      <div class="card-lift flex items-center gap-3 rounded-xl bg-white p-4" style="border:1px solid var(--line)"><span class="flex h-9 w-9 items-center justify-center rounded-lg" style="background:var(--brand-soft);color:var(--brand)"><i data-lucide="cpu"></i></span><span class="text-[13px] font-semibold" style="color:var(--ink)">Emerging Technologies</span></div>
+    </div>
+
+    <!-- Core Outcomes & What Students Will Learn - Enhanced with more points -->
+    <div class="mt-14 grid gap-6 lg:grid-cols-2">
+      <!-- Core Outcomes -->
+      <div class="rounded-2xl bg-white p-6 shadow-sm" style="border:1px solid var(--line)">
+        <h4 class="flex items-center gap-2 text-[17px] font-bold" style="color:var(--ink)"><i data-lucide="target" style="color:var(--brand)"></i> Core Outcomes</h4>
+        <ul class="mt-4 grid gap-2.5 text-[14px]">
+          <li class="flex gap-2"><i data-lucide="check-circle" style="color:var(--brand); flex-shrink:0;"></i>Discover true interests & strengths through real-world exposure</li>
+          <li class="flex gap-2"><i data-lucide="check-circle" style="color:var(--brand); flex-shrink:0;"></i>Build confidence before choosing your academic stream</li>
+          <li class="flex gap-2"><i data-lucide="check-circle" style="color:var(--brand); flex-shrink:0;"></i>Science vs Commerce clarity—understand what each path actually offers</li>
+          <li class="flex gap-2"><i data-lucide="check-circle" style="color:var(--brand); flex-shrink:0;"></i>Develop real-world skills (not just theory from textbooks)</li>
+          <li class="flex gap-2"><i data-lucide="check-circle" style="color:var(--brand); flex-shrink:0;"></i>Think like a creator and problem-solver, not just a student</li>
+          <li class="flex gap-2"><i data-lucide="check-circle" style="color:var(--brand); flex-shrink:0;"></i>Build a strong foundation for your future career path</li>
+          <li class="flex gap-2"><i data-lucide="check-circle" style="color:var(--brand); flex-shrink:0;"></i>Gain exposure to emerging industries and future job markets</li>
+          <li class="flex gap-2"><i data-lucide="check-circle" style="color:var(--brand); flex-shrink:0;"></i>Develop a professional mindset and work ethic early on</li>
+        </ul>
+      </div>
+
+      <!-- What Students Will Learn -->
+      <div class="rounded-2xl bg-white p-6 shadow-sm" style="border:1px solid var(--line)">
+        <h4 class="flex items-center gap-2 text-[17px] font-bold" style="color:var(--ink)"><i data-lucide="book-open" style="color:var(--brand)"></i> What Students Will Learn</h4>
+        <ul class="mt-4 grid gap-2.5 text-[14px]">
+          <li class="flex gap-2"><i data-lucide="check-circle" style="color:var(--brand); flex-shrink:0;"></i>Basics of multiple high-demand skills across industries</li>
+          <li class="flex gap-2"><i data-lucide="check-circle" style="color:var(--brand); flex-shrink:0;"></i>Problem-solving & creative thinking techniques</li>
+          <li class="flex gap-2"><i data-lucide="check-circle" style="color:var(--brand); flex-shrink:0;"></i>Effective communication & presentation skills</li>
+          <li class="flex gap-2"><i data-lucide="check-circle" style="color:var(--brand); flex-shrink:0;"></i>Introduction to AI, automation & emerging technologies</li>
+          <li class="flex gap-2"><i data-lucide="check-circle" style="color:var(--brand); flex-shrink:0;"></i>Financial literacy & stock market basics</li>
+          <li class="flex gap-2"><i data-lucide="check-circle" style="color:var(--brand); flex-shrink:0;"></i>Startups, entrepreneurship & understanding business opportunities</li>
+          <li class="flex gap-2"><i data-lucide="check-circle" style="color:var(--brand); flex-shrink:0;"></i>Personal branding & digital presence building</li>
+          <li class="flex gap-2"><i data-lucide="check-circle" style="color:var(--brand); flex-shrink:0;"></i>Interview skills & professional etiquette</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Mentorship Cards -->
+    <div class="mt-14 grid gap-6 md:grid-cols-3 rounded-3xl p-8" style="background:var(--ink)">
+      <div class="flex flex-col items-center gap-3 text-center text-white"><span class="flex h-11 w-11 items-center justify-center rounded-xl" style="background:rgba(201,79,0,.25);color:var(--brand)"><i data-lucide="user-circle"></i></span><span class="text-[14px] font-semibold">1:1 & Group Mentorship</span></div>
+      <div class="flex flex-col items-center gap-3 text-center text-white"><span class="flex h-11 w-11 items-center justify-center rounded-xl" style="background:rgba(201,79,0,.25);color:var(--brand)"><i data-lucide="users"></i></span><span class="text-[14px] font-semibold">Career Guidance Based on Personality</span></div>
+      <div class="flex flex-col items-center gap-3 text-center text-white"><span class="flex h-11 w-11 items-center justify-center rounded-xl" style="background:rgba(201,79,0,.25);color:var(--brand)"><i data-lucide="calendar"></i></span><span class="text-[14px] font-semibold">1-Year Community Access</span></div>
+    </div>
+  </div>
+
+  <!-- CLOSING QUOTE (directly below mentorship cards, no extra section spacing) -->
+  <div class="container-x">
+    <div class="mt-12 rounded-2xl p-6 text-center max-w-2xl mx-auto" style="background:var(--brand-soft);border:1px solid rgba(201,79,0,.2)">
+      <p class="text-[13px] md:text-[14px] font-medium leading-relaxed" style="color:var(--ink)">
+        <span class="italic-serif text-[16px] md:text-[18px]" style="color:var(--brand)">"</span>
+        Most students realize their career mistake <span class="font-semibold" style="color:var(--brand)">after graduation.</span> This program ensures you discover the right path <span class="font-semibold" style="color:var(--brand)">before choosing Science or Commerce</span>—and before it's too late.
+        <span class="italic-serif text-[16px] md:text-[18px]" style="color:var(--brand)">"</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:var(--ink);color:rgba(255,255,255,.7)">
+  <div class="container-x py-10 text-center text-[13px]">
+    © 2026 CareerLaunchpad · <a href="index.html" class="hover:text-white">Home</a>
+  </div>
+</footer>
+
+<script>
+  lucide.createIcons();
+  window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('shadow-lg',scrollY>8)},{passive:true});
+</script>
+</body>
+</html>

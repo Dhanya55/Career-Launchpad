@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Content Creation &amp; Graphic Design Internship — CareerLaunchpad</title>
+  <meta name="description" content="One integrated internship covering content creation, graphic design, and social media &amp; branding — how ideas become copy, copy becomes visuals, and visuals become campaigns, with real teams and industry mentorship.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brand: #c94f00;
+      --brand-hover: #b34400;
+      --brand-soft: #fbe8db;
+      --ink: #171312;
+      --ink-soft: #27211f;
+      --surface: #f8f6f4;
+      --text: #232323;
+      --text-muted: #6b6b6b;
+      --line: #e6e2de;
+    }
+    body { font-family: 'Inter', sans-serif; color: var(--text); font-size: 16px; line-height: 1.6; }
+    h1, h2, h3, h4 { font-family: 'Manrope', sans-serif; letter-spacing: -0.02em; }
+    .italic-serif { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700; }
+    .container-x { max-width: 1280px; margin-inline: auto; padding-inline: 24px; }
+    @media (min-width: 1024px) { .container-x { padding-inline: 60px; } }
+    .btn-brand { background: var(--brand); color: #fff; }
+    .btn-brand:hover { background: var(--brand-hover); }
+    .btn-outline { background: #fff; color: var(--brand); border: 1.5px solid var(--brand); }
+    .btn-outline:hover { background: var(--brand-soft); }
+    .btn-white { background: #fff; color: var(--brand); }
+    .btn-white:hover { background: var(--brand-soft); }
+    .card-lift { transition: 0.25s; }
+    .card-lift:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -20px rgba(201, 79, 0, 0.25); }
+    [data-lucide] { width: 1em; height: 1em; stroke-width: 2; }
+    .hero-gradient { background: linear-gradient(135deg, #f2650a 0%, #c94f00 45%, #a83e00 100%); position: relative; overflow: hidden; }
+    .hero-gradient::before {
+      content: "";
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 80% 20%, rgba(255,255,255,0.15), transparent 55%);
+    }
+    .hero-gradient::after {
+      content: "";
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(115deg, transparent 38%, rgba(255,255,255,0.10) 41%, rgba(255,255,255,0.10) 43%, transparent 46%),
+        linear-gradient(115deg, transparent 54%, rgba(255,255,255,0.16) 57%, rgba(255,255,255,0.16) 59%, transparent 62%),
+        linear-gradient(115deg, transparent 68%, rgba(255,255,255,0.08) 71%, rgba(255,255,255,0.08) 73%, transparent 76%);
+      mix-blend-mode: overlay;
+      pointer-events: none;
+    }
+    .hero-gradient > .container-x { position: relative; }
+    .hero-badge { border: 1.5px solid rgba(255,255,255,0.7); background: transparent; }
+    .stat-card {
+      border-radius: 1rem; padding: 1.5rem 1rem; background: white; border: 1px solid var(--line);
+      transition: 0.2s; text-align: center; aspect-ratio: 1 / 1;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+    }
+    .stat-card:hover { border-color: var(--brand); box-shadow: 0 8px 24px -8px rgba(201, 79, 0, 0.1); }
+    @media (max-width: 480px) { .stat-card { aspect-ratio: auto; min-height: 120px; padding: 1rem; } }
+    .check-item { display: flex; gap: 0.6rem; align-items: flex-start; }
+    .check-item i { color: var(--brand); flex-shrink: 0; margin-top: 2px; }
+    .section-label {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em;
+      color: var(--brand); background: var(--brand-soft); padding: 0.35rem 0.9rem; border-radius: 100px;
+    }
+    .skill-card {
+      border-radius: 1.25rem; padding: 1.5rem; background: white; border: 1px solid var(--line);
+      transition: 0.2s; display: flex; flex-direction: column; gap: 0.9rem;
+    }
+    .skill-card:hover { border-color: var(--brand); box-shadow: 0 8px 24px -8px rgba(201, 79, 0, 0.15); transform: translateY(-3px); }
+    .skill-card .icon-wrap {
+      flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+      width: 2.8rem; height: 2.8rem; border-radius: 0.75rem; background: var(--brand-soft); color: var(--brand); font-size: 1.1rem;
+    }
+    .skill-card h4 { font-size: 0.98rem; font-weight: 700; color: var(--ink); margin: 0; }
+    .skill-card p { font-size: 0.83rem; color: var(--text-muted); margin: 0; line-height: 1.55; }
+    .module-tag {
+      display: inline-flex; align-items: center; border-radius: 0.4rem; padding: 0.28rem 0.6rem;
+      font-size: 11px; font-weight: 600; background: var(--brand-soft); color: var(--brand);
+    }
+
+    /* Curriculum vertical timeline */
+    .curric-timeline { position: relative; }
+    .curric-timeline::before { content: ""; position: absolute; left: 1.5rem; top: 0.5rem; bottom: 0.5rem; width: 2px; background: var(--line); }
+    @media (min-width: 768px) { .curric-timeline::before { left: 1.75rem; } }
+    .curric-item { position: relative; display: flex; gap: 1.5rem; padding-bottom: 1.75rem; }
+    .curric-item:last-child { padding-bottom: 0; }
+    .curric-dot {
+      flex-shrink: 0; position: relative; z-index: 1;
+      width: 3rem; height: 3rem; border-radius: 999px;
+      background: var(--brand); color: #fff; font-weight: 800; font-family: 'Manrope', sans-serif;
+      display: flex; align-items: center; justify-content: center; font-size: 0.95rem;
+    }
+    @media (min-width: 768px) { .curric-dot { width: 3.5rem; height: 3.5rem; } }
+    .curric-content { flex: 1; background: white; border: 1px solid var(--line); border-radius: 1.25rem; padding: 1.35rem 1.5rem; transition: 0.2s; }
+    .curric-content:hover { border-color: var(--brand); box-shadow: 0 8px 24px -8px rgba(201, 79, 0, 0.12); }
+    .curric-week { display: inline-block; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--brand); margin-bottom: 0.35rem; }
+    .curric-content h4 { font-size: 1.02rem; font-weight: 700; color: var(--ink); margin: 0 0 0.4rem; }
+    .curric-content p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin: 0 0 0.85rem; }
+    .curric-track-flag {
+      display: inline-flex; align-items: center; gap: 0.3rem; font-size: 10.5px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.06em; color: var(--brand); margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body class="bg-white">
+
+<!-- NAVBAR -->
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b" style="border-color:var(--line)">
+  <div class="container-x flex h-[72px] items-center justify-between">
+    <a href="index.html" class="flex items-center gap-2 flex-shrink-0">
+      <span class="flex h-8 w-8 items-center justify-center rounded-lg" style="background:var(--brand)">
+        <i data-lucide="graduation-cap" class="text-white"></i>
+      </span>
+      <span class="text-[18.5px] font-bold" style="color:var(--ink)">Career<span style="color:var(--brand)">Launchpad</span></span>
+    </a>
+
+    <nav class="hidden lg:flex gap-7 text-[15.5px] font-medium">
+      <a href="career-starter.html">Career Starter</a>
+      <a href="junior-career.html">Junior Career</a>
+      <a href="pay-after-placement.html">Pay After Placement</a>
+      <a href="internships.html" style="color:var(--brand)">Internships</a>
+      <a href="experienced.html">Experienced</a>
+    </nav>
+
+    <a href="schedule-call.html" class="btn-brand hidden lg:inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-[14.5px] font-semibold flex-shrink-0">
+      <i data-lucide="phone"></i> Schedule Call
+    </a>
+
+    <button onclick="document.getElementById('mnav').classList.toggle('hidden')" class="lg:hidden p-2">
+      <i data-lucide="menu"></i>
+    </button>
+  </div>
+  <div id="mnav" class="hidden lg:hidden border-t" style="border-color:var(--line)">
+    <div class="container-x flex flex-col gap-1 py-4 text-[16.5px]">
+      <a href="career-starter.html" class="px-3 py-2.5">Career Starter</a>
+      <a href="junior-career.html" class="px-3 py-2.5">Junior Career</a>
+      <a href="pay-after-placement.html" class="px-3 py-2.5">Pay After Placement</a>
+      <a href="internships.html" class="px-3 py-2.5">Internships</a>
+      <a href="experienced.html" class="px-3 py-2.5">Experienced</a>
+      <a href="schedule-call.html" class="btn-brand rounded-full px-4 py-2.5 text-[14.5px] font-semibold text-center mt-2">Schedule Call</a>
+    </div>
+  </div>
+</header>
+
+<!-- BREADCRUMB -->
+<div class="bg-white py-4">
+  <div class="container-x flex items-center gap-2 text-[14.5px]" style="color:var(--text-muted)">
+    <a href="internships.html" class="hover:underline">Internships</a>
+    <i data-lucide="chevron-right" class="text-[13.5px]"></i>
+    <span style="color:var(--ink)">Content Creation &amp; Graphic Design</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="relative overflow-hidden hero-gradient">
+  <div class="container-x relative py-16 md:py-24">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-10 md:gap-20">
+      <div class="flex-1 md:max-w-xl">
+        <span class="hero-badge inline-flex rounded-full px-5 py-2 text-[11.5px] font-bold uppercase tracking-[0.14em] text-white">Content &amp; Design Track · Internship</span>
+        <h1 class="mt-7 text-[32px] md:text-[44px] font-extrabold leading-[1.12] text-white">
+          Content Creation <span class="italic-serif">&amp;</span> Graphic Design
+        </h1>
+        <p class="mt-6 text-[16px] leading-relaxed text-white/90">
+          One integrated internship covering how ideas become copy, copy becomes visuals, and visuals become campaigns — rotate through real content, design, and social/branding teams in a single program.
+        </p>
+        <div class="mt-8 flex flex-wrap items-center gap-3">
+          <a href="schedule-call.html" class="inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-[14.5px] font-semibold" style="background:#fff;color:var(--brand)">
+            <i data-lucide="phone"></i> Apply Now — Schedule a Call
+          </a>
+          <span class="inline-flex items-center gap-2 rounded-full border-2 border-white/50 px-6 py-3.5 text-[14.5px] font-semibold text-white">
+            <i data-lucide="clock"></i> 12-week program &nbsp;·&nbsp; <i data-lucide="laptop"></i> Remote / Hybrid
+          </span>
+        </div>
+      </div>
+      <div class="flex-shrink-0 w-full md:w-[420px] md:ml-auto">
+        <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=1200&q=80&auto=format&fit=crop"
+             alt="Designer's desk with a tablet showing a colorful brand layout"
+             class="w-full h-64 md:h-80 rounded-3xl object-cover shadow-lg" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK FACTS -->
+<section class="py-8 bg-white">
+  <div class="container-x">
+    <div class="grid gap-3 md:grid-cols-4">
+      <div class="flex items-center gap-3 rounded-2xl p-4" style="background:var(--surface);border:1px solid var(--line)">
+        <span class="flex h-10 w-10 items-center justify-center rounded-xl" style="background:var(--brand-soft);color:var(--brand)"><i data-lucide="calendar"></i></span>
+        <div>
+          <p class="text-[13.5px]" style="color:var(--text-muted)">Duration</p>
+          <p class="text-[15px] font-semibold" style="color:var(--ink)">12 Weeks · 3 Tracks</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3 rounded-2xl p-4" style="background:var(--surface);border:1px solid var(--line)">
+        <span class="flex h-10 w-10 items-center justify-center rounded-xl" style="background:var(--brand-soft);color:var(--brand)"><i data-lucide="graduation-cap"></i></span>
+        <div>
+          <p class="text-[13.5px]" style="color:var(--text-muted)">Mentorship</p>
+          <p class="text-[15px] font-semibold" style="color:var(--ink)">1:1 Expert Guidance</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3 rounded-2xl p-4" style="background:var(--surface);border:1px solid var(--line)">
+        <span class="flex h-10 w-10 items-center justify-center rounded-xl" style="background:var(--brand-soft);color:var(--brand)"><i data-lucide="award"></i></span>
+        <div>
+          <p class="text-[13.5px]" style="color:var(--text-muted)">Outcome</p>
+          <p class="text-[15px] font-semibold" style="color:var(--ink)">Certificate + Portfolio</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3 rounded-2xl p-4" style="background:var(--surface);border:1px solid var(--line)">
+        <span class="flex h-10 w-10 items-center justify-center rounded-xl" style="background:var(--brand-soft);color:var(--brand)"><i data-lucide="users"></i></span>
+        <div>
+          <p class="text-[13.5px]" style="color:var(--text-muted)">Hiring Partners</p>
+          <p class="text-[15px] font-semibold" style="color:var(--ink)">900+ Companies</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAM OVERVIEW -->
+<section class="py-16" style="background:var(--surface)">
+  <div class="container-x">
+    <div class="text-center max-w-2xl mx-auto">
+      <span class="section-label"><i data-lucide="book-open" style="width:11px;height:11px"></i> Program Overview</span>
+      <h2 class="mt-4 text-[29px] md:text-[35px] font-bold" style="color:var(--ink)">What you'll actually <span class="italic-serif" style="color:var(--brand)">be doing</span></h2>
+    </div>
+
+    <div class="mt-10 grid gap-16 lg:grid-cols-5 max-w-5xl mx-auto items-stretch">
+      <div class="lg:col-span-3 flex flex-col justify-center">
+        <p class="text-[16px] leading-relaxed" style="color:var(--text-muted)">
+          This internship rotates you through three connected functions — content creation, graphic design, and social media &amp; branding — working alongside the people who turn a brief into work an audience actually sees. You'll see how a story gets researched and written, how a visual identity gets designed and refined, and how content and design come together into campaigns that go live.
+        </p>
+        <p class="mt-4 text-[16px] leading-relaxed" style="color:var(--text-muted)">
+          By the end of the program, you'll have hands-on experience across the full idea-to-campaign pipeline, a portfolio of real deliverables from all three functions, and a verified certificate to show for it.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-2">
+          <span class="module-tag">Idea-to-Campaign Pipeline</span>
+          <span class="module-tag">Real Deliverables</span>
+          <span class="module-tag">Mentor Feedback</span>
+        </div>
+      </div>
+
+      <div class="lg:col-span-2 rounded-3xl p-7 bg-white" style="border:1px solid var(--line)">
+        <h4 class="text-[15px] font-bold" style="color:var(--ink)">Day-to-day, you'll:</h4>
+        <div class="mt-4 flex flex-col gap-3.5">
+          <div class="check-item">
+            <i data-lucide="check-circle-2"></i>
+            <p class="text-[14.5px]" style="color:var(--text-muted)">Research, outline, and write real content alongside content strategists.</p>
+          </div>
+          <div class="check-item">
+            <i data-lucide="check-circle-2"></i>
+            <p class="text-[14.5px]" style="color:var(--text-muted)">Sit in on design critiques, editorial reviews, and campaign planning.</p>
+          </div>
+          <div class="check-item">
+            <i data-lucide="check-circle-2"></i>
+            <p class="text-[14.5px]" style="color:var(--text-muted)">Design visuals, build brand assets, and ship real social campaigns.</p>
+          </div>
+          <div class="check-item">
+            <i data-lucide="check-circle-2"></i>
+            <p class="text-[14.5px]" style="color:var(--text-muted)">Get weekly 1:1 feedback from mentors across all three tracks.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS YOU'LL BUILD (grouped by track) -->
+<section class="py-14 bg-white">
+  <div class="container-x">
+    <div class="text-center max-w-2xl mx-auto mb-8">
+      <span class="section-label"><i data-lucide="graduation-cap" style="width:11px;height:11px"></i> Skills You'll Build</span>
+      <h2 class="mt-4 text-[29px] md:text-[35px] font-bold" style="color:var(--ink)">Job-ready capabilities, across all three tracks</h2>
+      <p class="mt-3 text-[16px]" style="color:var(--text-muted)">Every skill maps to a real task you'll perform on the job, from day one.</p>
+    </div>
+
+    <div class="max-w-5xl mx-auto flex flex-col gap-10">
+      <div>
+        <h3 class="text-[13px] font-bold uppercase tracking-[0.1em] mb-4" style="color:var(--brand)">Content Creation</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div class="skill-card">
+            <div class="icon-wrap"><i data-lucide="pen-line"></i></div>
+            <h4>Copywriting &amp; Storytelling</h4>
+            <p>Write clear, persuasive copy for real audiences and briefs.</p>
+          </div>
+          <div class="skill-card">
+            <div class="icon-wrap"><i data-lucide="search"></i></div>
+            <h4>Content Research &amp; SEO</h4>
+            <p>Research topics and optimize content so real readers find it.</p>
+          </div>
+          <div class="skill-card">
+            <div class="icon-wrap"><i data-lucide="film"></i></div>
+            <h4>Video &amp; Short-Form Content</h4>
+            <p>Script and edit short-form video for real channels.</p>
+          </div>
+          <div class="skill-card">
+            <div class="icon-wrap"><i data-lucide="calendar-days"></i></div>
+            <h4>Editorial &amp; Content Planning</h4>
+            <p>Plan and schedule content calendars against real goals.</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="text-[13px] font-bold uppercase tracking-[0.1em] mb-4" style="color:var(--brand)">Graphic Design</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div class="skill-card">
+            <div class="icon-wrap"><i data-lucide="palette"></i></div>
+            <h4>Visual Design Fundamentals</h4>
+            <p>Apply layout, color, and typography to real design briefs.</p>
+          </div>
+          <div class="skill-card">
+            <div class="icon-wrap"><i data-lucide="layers"></i></div>
+            <h4>Adobe &amp; Design Tools</h4>
+            <p>Work in Photoshop, Illustrator, and Figma on real files.</p>
+          </div>
+          <div class="skill-card">
+            <div class="icon-wrap"><i data-lucide="badge-check"></i></div>
+            <h4>Branding &amp; Identity</h4>
+            <p>Build logos and brand systems for a real client brief.</p>
+          </div>
+          <div class="skill-card">
+            <div class="icon-wrap"><i data-lucide="layout-template"></i></div>
+            <h4>UI &amp; Digital Layout</h4>
+            <p>Design real digital assets, from banners to landing pages.</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="text-[13px] font-bold uppercase tracking-[0.1em] mb-4" style="color:var(--brand)">Social Media &amp; Branding</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div class="skill-card">
+            <div class="icon-wrap"><i data-lucide="share-2"></i></div>
+            <h4>Social Media Strategy</h4>
+            <p>Plan real campaigns across platforms and audiences.</p>
+          </div>
+          <div class="skill-card">
+            <div class="icon-wrap"><i data-lucide="image"></i></div>
+            <h4>Campaign Asset Design</h4>
+            <p>Design a real, cohesive asset set for a live campaign.</p>
+          </div>
+          <div class="skill-card">
+            <div class="icon-wrap"><i data-lucide="bar-chart-3"></i></div>
+            <h4>Analytics &amp; Performance</h4>
+            <p>Track real engagement data and adjust content accordingly.</p>
+          </div>
+          <div class="skill-card">
+            <div class="icon-wrap"><i data-lucide="users-round"></i></div>
+            <h4>Community &amp; Engagement</h4>
+            <p>Manage real audience interactions and brand voice.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CURRICULUM -->
+<section class="py-16" style="background:var(--surface)">
+  <div class="container-x">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <span class="section-label"><i data-lucide="clipboard-list" style="width:11px;height:11px"></i> Curriculum</span>
+      <h2 class="mt-4 text-[31px] md:text-[39px] font-bold" style="color:var(--ink)">A six-module path, across three tracks</h2>
+      <p class="mt-3 text-[16.5px]" style="color:var(--text-muted)">Each module builds on the last — from content and design fundamentals, through content creation, graphic design, and social &amp; branding, to a real, mentor-reviewed capstone.</p>
+    </div>
+
+    <div class="curric-timeline max-w-3xl mx-auto">
+      <div class="curric-item">
+        <span class="curric-dot">01</span>
+        <div class="curric-content">
+          <span class="curric-week">Weeks 1–2</span>
+          <span class="curric-track-flag"><i data-lucide="compass" style="width:11px;height:11px"></i> Foundations</span>
+          <h4>Content &amp; Design Fundamentals</h4>
+          <p>How content creation, graphic design, and social media work together to build a brand.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="module-tag">Design Tools</span>
+            <span class="module-tag">Content Lifecycle</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="curric-item">
+        <span class="curric-dot">02</span>
+        <div class="curric-content">
+          <span class="curric-week">Weeks 3–5</span>
+          <span class="curric-track-flag"><i data-lucide="pen-line" style="width:11px;height:11px"></i> Content Creation</span>
+          <h4>Writing &amp; Producing Content</h4>
+          <p>Researching, writing, and scripting real content for real audiences.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="module-tag">Copywriting</span>
+            <span class="module-tag">Content Planning</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="curric-item">
+        <span class="curric-dot">03</span>
+        <div class="curric-content">
+          <span class="curric-week">Weeks 6–8</span>
+          <span class="curric-track-flag"><i data-lucide="palette" style="width:11px;height:11px"></i> Graphic Design</span>
+          <h4>Designing &amp; Refining Visuals</h4>
+          <p>Building layouts, brand assets, and digital designs on real briefs.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="module-tag">Visual Design</span>
+            <span class="module-tag">Branding</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="curric-item">
+        <span class="curric-dot">04</span>
+        <div class="curric-content">
+          <span class="curric-week">Weeks 9–10</span>
+          <span class="curric-track-flag"><i data-lucide="share-2" style="width:11px;height:11px"></i> Social Media &amp; Branding</span>
+          <h4>Launching Real Campaigns</h4>
+          <p>Turning content and design into a live, coordinated social campaign.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="module-tag">Campaigns</span>
+            <span class="module-tag">Engagement</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="curric-item">
+        <span class="curric-dot">05</span>
+        <div class="curric-content">
+          <span class="curric-week">Week 11</span>
+          <span class="curric-track-flag"><i data-lucide="bar-chart-3" style="width:11px;height:11px"></i> Cross-Functional</span>
+          <h4>Publishing &amp; Performance</h4>
+          <p>Publishing real work and reviewing performance against real goals.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="module-tag">Publishing</span>
+            <span class="module-tag">Analytics</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="curric-item">
+        <span class="curric-dot">06</span>
+        <div class="curric-content">
+          <span class="curric-week">Week 12</span>
+          <span class="curric-track-flag"><i data-lucide="flag" style="width:11px;height:11px"></i> Capstone</span>
+          <h4>Capstone Project</h4>
+          <p>Ship a real content or design campaign end-to-end, from brief to finished assets, with mentor review, ready for your portfolio.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="module-tag">Capstone</span>
+            <span class="module-tag">Portfolio</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="py-16 bg-white">
+  <div class="container-x">
+    <div class="rounded-3xl hero-gradient px-8 py-12 text-center md:px-16">
+      <h2 class="text-[29px] md:text-[37px] font-bold text-white">Ready to start your content &amp; design career?</h2>
+      <p class="mx-auto mt-3 max-w-xl text-[16px] text-white/85">Book a quick call with our career expert and get matched to the next Content Creation &amp; Graphic Design internship cohort.</p>
+      <a href="schedule-call.html" class="btn-white mt-6 inline-flex items-center gap-2 rounded-full px-6 py-3 text-[15px] font-semibold">
+        <i data-lucide="phone"></i> Schedule a Call
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:var(--ink);color:rgba(255,255,255,.7)">
+  <div class="container-x py-10 text-center text-[14.5px]">
+    ©️ 2026 CareerLaunchpad · <a href="index.html" class="hover:text-white">Home</a>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+</body>
+</html>

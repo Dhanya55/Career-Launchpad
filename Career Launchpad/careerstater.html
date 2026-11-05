@@ -1,0 +1,367 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Career Starter Program — CareerLaunchpad</title>
+  <meta name="description" content="For college students & fresh graduates: explore multiple domains, build real projects, and land your first job.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&family=Instrument+Serif&display=swap" rel="stylesheet">
+  <style>
+    /* updated orange shade */
+    :root {
+      --brand: #c94f00;
+      --brand-hover: #b34400;
+      --brand-soft: #fbe8db;
+      --ink: #171312;
+      --ink-soft: #27211f;
+      --surface: #f8f6f4;
+      --text: #232323;
+      --text-muted: #6b6b6b;
+      --line: #e6e2de;
+    }
+    body { font-family: 'Inter', sans-serif; color: var(--text); }
+    h1, h2, h3, h4 { font-family: 'Manrope', sans-serif; letter-spacing: -0.02em; }
+    .italic-serif { font-family: 'Instrument Serif', serif; font-style: italic; }
+    .container-x { max-width: 1280px; margin-inline: auto; padding-inline: 24px; }
+    @media (min-width: 1024px) { .container-x { padding-inline: 80px; } }
+    /* aligns hero left edge (h1) exactly with the navbar logo's left edge (matches the nav link's own padding: pl-8 / md:pl-14 / lg:pl-32) */
+    .hero-align-logo { padding-left: 32px !important; }
+    @media (min-width: 768px) { .hero-align-logo { padding-left: 56px !important; } }
+    @media (min-width: 1024px) { .hero-align-logo { padding-left: 128px !important; } }
+    .btn-brand { background: var(--brand); color: #fff; }
+    .btn-brand:hover { background: var(--brand-hover); }
+    .card-lift { transition: 0.25s; }
+    .card-lift:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -20px rgba(201, 79, 0, 0.25); }
+    [data-lucide] { width: 1em; height: 1em; stroke-width: 2; }
+    .hero-gradient { background: linear-gradient(135deg, #f2650a 0%, #c94f00 45%, #a83e00 100%); position: relative; overflow: hidden; }
+    .hero-gradient::before {
+      content: "";
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 80% 20%, rgba(255,255,255,0.15), transparent 55%);
+    }
+    .hero-gradient::after {
+      content: "";
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(115deg, transparent 38%, rgba(255,255,255,0.10) 41%, rgba(255,255,255,0.10) 43%, transparent 46%),
+        linear-gradient(115deg, transparent 54%, rgba(255,255,255,0.16) 57%, rgba(255,255,255,0.16) 59%, transparent 62%),
+        linear-gradient(115deg, transparent 68%, rgba(255,255,255,0.08) 71%, rgba(255,255,255,0.08) 73%, transparent 76%);
+      mix-blend-mode: overlay;
+      pointer-events: none;
+    }
+    .hero-badge {
+      border: 1.5px solid rgba(255,255,255,0.7);
+      background: transparent;
+    }
+    .hero-image-wrapper {
+      overflow: hidden;
+      border-radius: 1rem !important;
+    }
+    .hero-image-wrapper img {
+      filter: brightness(1.25) saturate(1.05);
+      border-radius: 1rem !important;
+    }
+    .tag-badge {
+      background: white;
+      padding: 0.3rem 1rem;
+      border-radius: 100px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--brand);
+      border: 1px solid var(--line);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+      letter-spacing: 0.02em;
+    }
+    .large-quote {
+      font-size: 1.05rem;
+      line-height: 1.5;
+      white-space: nowrap;
+    }
+    @media (min-width: 640px) {
+      .large-quote { font-size: 1.2rem; }
+    }
+    @media (max-width: 480px) {
+      .large-quote { font-size: 0.68rem; }
+    }
+    .skill-pill {
+      background: white;
+      border-radius: 100px;
+      padding: 1rem 1.6rem;
+      text-align: center;
+      border: 1px solid var(--line);
+      transition: 0.2s;
+      display: inline-flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 0.75rem;
+      white-space: nowrap;
+    }
+    .skill-pill:hover {
+      border-color: var(--brand);
+      box-shadow: 0 8px 24px -8px rgba(201, 79, 0, 0.15);
+      transform: translateY(-2px);
+    }
+    .skill-pill i {
+      color: var(--brand);
+      flex-shrink: 0;
+      width: 1.4em;
+      height: 1.4em;
+    }
+    .skill-pill .skill-label {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: 0.01em;
+    }
+    .social-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      background: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.8);
+      transition: 0.2s;
+    }
+    .social-icon:hover { background: var(--brand); color: #fff; }
+  </style>
+</head>
+<body class="bg-white">
+
+<!-- NAVBAR -->
+<header id="nav" class="sticky top-0 z-50 w-full bg-white/95 backdrop-blur border-b" style="border-color:var(--line)">
+  <div class="w-full flex h-[72px] items-center justify-between pl-0 pr-4 md:pr-8 lg:pr-16">
+    <a href="https://darksalmon-chough-605366.hostingersite.com/home/" class="flex items-center gap-2 pl-8 md:pl-14 lg:pl-32">
+      <span class="flex h-8 w-8 items-center justify-center rounded-lg" style="background:var(--brand)"><i data-lucide="graduation-cap" class="text-white text-[20px]"></i></span>
+      <span class="text-[19px] font-bold" style="color:var(--ink)">Career<span style="color:var(--brand)">Launchpad</span></span>
+    </a>
+    <nav class="hidden lg:flex flex-1 items-center justify-center gap-7 text-[15.5px] font-medium" style="color:var(--text)">
+      <a href="https://darksalmon-chough-605366.hostingersite.com/career-starter/" style="color:var(--brand)">Career Starter</a>
+      <a href="https://darksalmon-chough-605366.hostingersite.com/junior-career/" class="hover:text-[color:var(--brand)]">Junior Career</a>
+      <a href="https://darksalmon-chough-605366.hostingersite.com/pay-after-payment/" class="hover:text-[color:var(--brand)]">Pay After Placement</a>
+      <a href="https://darksalmon-chough-605366.hostingersite.com/internship/" class="hover:text-[color:var(--brand)]">Internship</a>
+      <a href="https://darksalmon-chough-605366.hostingersite.com/experienced/" class="hover:text-[color:var(--brand)]">Experienced</a>
+    </nav>
+    <a href="https://darksalmon-chough-605366.hostingersite.com/schedule-call/" class="hidden lg:inline-flex btn-brand items-center gap-2 rounded-full px-5 py-2.5 text-[14.5px] font-semibold"><i data-lucide="phone" class="text-[17px]"></i> Schedule Call</a>
+    <button onclick="document.getElementById('mnav').classList.toggle('hidden')" class="lg:hidden p-2 rounded-lg ml-auto" style="color:var(--ink)"><i data-lucide="menu"></i></button>
+  </div>
+  <div id="mnav" class="hidden lg:hidden border-t" style="border-color:var(--line)">
+    <div class="container-x flex flex-col gap-1 py-4 text-[15px] font-medium" style="color:var(--text)">
+      <a href="career-starter.html" class="px-3 py-2.5">Career Starter</a>
+      <a href="junior-career.html" class="px-3 py-2.5">Junior Career</a>
+      <a href="pay-after-placement.html" class="px-3 py-2.5">Pay After Placement</a>
+      <a href="internships.html" class="px-3 py-2.5">Internship</a>
+      <a href="experienced.html" class="px-3 py-2.5">Experienced</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="relative overflow-hidden hero-gradient">
+  <div class="w-full grid gap-0 py-20 md:py-28 lg:grid-cols-2 lg:grid-rows-[auto_auto_auto]">
+    <div class="text-left hero-align-logo pr-4 md:pr-8 lg:pr-8 lg:col-start-1 lg:row-start-1">
+      <span class="hero-badge inline-flex rounded-full px-5 py-2 text-[11.5px] font-bold uppercase tracking-[0.14em] text-white">For College Students & Fresh Graduates</span>
+    </div>
+    <!-- row-start-2: top edge of this row is what the hero image's top will align to -->
+    <h1 class="hero-align-logo pr-4 md:pr-8 lg:pr-8 lg:col-start-1 lg:row-start-2 mt-7 max-w-xl text-[34px] md:text-[52px] font-extrabold leading-[1.12] text-white">
+      Start Your Career With Confidence, Not Confusion
+    </h1>
+    <!-- row-start-3: bottom edge of this row is what the hero image's bottom will align to -->
+    <p class="hero-align-logo pr-4 md:pr-8 lg:pr-8 lg:col-start-1 lg:row-start-3 -mt-14 max-w-xl text-[16px] leading-snug text-white/90">
+      Explore multiple domains, build real projects, and land your first job with expert mentorship. Learn from industry mentors who guide you every step of the way.
+    </p>
+    <!-- image column -->
+    <div class="relative flex justify-center lg:justify-start px-4 md:px-8 lg:pl-4 lg:pr-24 lg:col-start-2 lg:row-start-2 lg:self-center">
+      <!-- frame around the photo -->
+      <!-- inline !important overrides WordPress/theme global img resets (e.g. img{max-width:100%;height:auto})
+           that otherwise shrink this image inside the WP content wrapper -->
+      <div class="relative w-full" style="max-width:420px !important;">
+        <div class="relative overflow-hidden hero-image-wrapper w-full rounded-2xl" style="aspect-ratio:4/3.2 !important; width:100% !important;">
+          <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1200&q=80" alt="Students collaborating on a career project" class="object-cover" style="width:100% !important; height:100% !important; max-width:100% !important;">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="py-16 md:py-16 bg-white">
+  <div class="container-x grid gap-x-12 gap-y-0 lg:grid-cols-2 lg:grid-rows-[auto_auto_auto_auto_auto_auto]">
+    <!-- row-start-1: top edge of this row is what the image's top will align to -->
+    <span class="lg:col-start-2 lg:row-start-1 inline-flex rounded-full px-4 py-1.5 text-[11.5px] font-semibold uppercase tracking-[0.14em]"
+          style="background:var(--brand-soft);color:var(--brand);border:1px solid rgba(201,79,0,.2)">
+      For College Students & Fresh Graduates
+    </span>
+    <h2 class="lg:col-start-2 lg:row-start-2 mt-4 text-[34px] md:text-[42px] font-bold" style="color:var(--ink)">
+      Career Starter <span class="italic-serif" style="color:var(--brand)">Program</span>
+    </h2>
+    <p class="lg:col-start-2 lg:row-start-3 mt-4 text-[17px] md:text-[18px] leading-relaxed" style="color:var(--text-muted)">
+      Confused about your career? Not sure which field suits you? Explore multiple domains before choosing your career path through structured, hands-on practical training.
+    </p>
+    <hr class="lg:col-start-2 lg:row-start-4 mt-6" style="border-color:var(--line)">
+    <h3 class="lg:col-start-2 lg:row-start-5 mt-8 text-[16px] font-bold" style="color:var(--ink)">Does This Sound Like You?</h3>
+    <!-- row-start-6: bottom edge of this row ("Fear of choosing wrong career") is what the image's bottom will align to -->
+    <ul class="lg:col-start-2 lg:row-start-6 mt-4 grid gap-2.5 text-[14px]">
+      <li class="flex items-start gap-2.5"><i data-lucide="check-circle-2" style="color:var(--brand)"></i>Don't know which career to choose</li>
+      <li class="flex items-start gap-2.5"><i data-lucide="check-circle-2" style="color:var(--brand)"></i>No practical skills despite degree</li>
+      <li class="flex items-start gap-2.5"><i data-lucide="check-circle-2" style="color:var(--brand)"></i>No experience = no job cycle</li>
+      <li class="flex items-start gap-2.5"><i data-lucide="check-circle-2" style="color:var(--brand)"></i>Confused between too many options</li>
+      <li class="flex items-start gap-2.5"><i data-lucide="check-circle-2" style="color:var(--brand)"></i>Lack of guidance & mentorship</li>
+      <li class="flex items-start gap-2.5"><i data-lucide="check-circle-2" style="color:var(--brand)"></i>Low confidence in interviews</li>
+      <li class="flex items-start gap-2.5"><i data-lucide="check-circle-2" style="color:var(--brand)"></i>Applying everywhere, no response</li>
+      <li class="flex items-start gap-2.5"><i data-lucide="check-circle-2" style="color:var(--brand)"></i>Fear of choosing wrong career</li>
+    </ul>
+
+    <!-- image column: spans row-start-1 (badge's row) through row-end-7 (end of the list's row),
+         so its top lines up with the badge's top and its bottom lines up with the last list item -->
+    <div class="relative mx-auto w-full max-w-lg lg:max-w-none lg:col-start-1 lg:row-start-1 lg:row-end-7 lg:self-stretch">
+      <div class="w-full h-full rounded-3xl bg-white" style="border:1px solid var(--line)">
+        <img src="https://darksalmon-chough-605366.hostingersite.com/wp-content/uploads/2026/07/Image.png"
+             class="relative w-full h-full mx-auto rounded-3xl object-contain"
+             alt="Smiling professional holding a phone and card">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS + FEATURES + TRACKS -->
+<section class="py-14 md:py-16" style="background:var(--surface)">
+  <div class="container-x">
+    <!-- Future-Ready skills -->
+    <div class="rounded-3xl bg-white p-8 md:p-10" style="border:1px solid var(--line)">
+      <div class="text-center">
+        <h3 class="text-[22px] font-bold" style="color:var(--ink)">Future-Ready & Recession-Proof Skills You'll Learn</h3>
+      </div>
+      <div class="mt-6 flex flex-wrap justify-center gap-3">
+        <div class="skill-pill"><i data-lucide="brain-circuit"></i><span class="skill-label">AI & Machine Learning</span></div>
+        <div class="skill-pill"><i data-lucide="rocket"></i><span class="skill-label">Digital Marketing</span></div>
+        <div class="skill-pill"><i data-lucide="handshake"></i><span class="skill-label">Sales & BD</span></div>
+        <div class="skill-pill"><i data-lucide="repeat"></i><span class="skill-label">Automation</span></div>
+        <div class="skill-pill"><i data-lucide="code"></i><span class="skill-label">Web/App Development</span></div>
+        <div class="skill-pill"><i data-lucide="chart-network"></i><span class="skill-label">Data Science & Analytics</span></div>
+        <div class="skill-pill"><i data-lucide="shield-check"></i><span class="skill-label">Cybersecurity</span></div>
+        <div class="skill-pill"><i data-lucide="cloud"></i><span class="skill-label">Cloud Computing</span></div>
+        <div class="skill-pill"><i data-lucide="bot"></i><span class="skill-label">IoT & Robotics</span></div>
+        <div class="skill-pill"><i data-lucide="figma"></i><span class="skill-label">UI/UX Design</span></div>
+        <div class="skill-pill"><i data-lucide="infinity"></i><span class="skill-label">DevOps</span></div>
+      </div>
+    </div>
+
+    <!-- feature cards -->
+    <div class="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+      <div class="card-lift rounded-2xl bg-white p-6" style="border:1px solid var(--line)"><span class="flex h-11 w-11 items-center justify-center rounded-xl" style="background:var(--brand-soft);color:var(--brand)"><i data-lucide="folder-kanban"></i></span><h4 class="mt-4 text-[15px] font-bold" style="color:var(--ink)">Live Client Projects</h4><p class="mt-1 text-[13px]" style="color:var(--text-muted)">Work on real projects, not just theory</p></div>
+      <div class="card-lift rounded-2xl bg-white p-6" style="border:1px solid var(--line)"><span class="flex h-11 w-11 items-center justify-center rounded-xl" style="background:var(--brand-soft);color:var(--brand)"><i data-lucide="graduation-cap"></i></span><h4 class="mt-4 text-[15px] font-bold" style="color:var(--ink)">1:1 Mentorship</h4><p class="mt-1 text-[13px]" style="color:var(--text-muted)">Personal career guidance from experts</p></div>
+      <div class="card-lift rounded-2xl bg-white p-6" style="border:1px solid var(--line)"><span class="flex h-11 w-11 items-center justify-center rounded-xl" style="background:var(--brand-soft);color:var(--brand)"><i data-lucide="briefcase"></i></span><h4 class="mt-4 text-[15px] font-bold" style="color:var(--ink)">Job-Ready Portfolio</h4><p class="mt-1 text-[13px]" style="color:var(--text-muted)">Build a portfolio that gets you hired</p></div>
+      <div class="card-lift rounded-2xl bg-white p-6" style="border:1px solid var(--line)"><span class="flex h-11 w-11 items-center justify-center rounded-xl" style="background:var(--brand-soft);color:var(--brand)"><i data-lucide="rocket"></i></span><h4 class="mt-4 text-[15px] font-bold" style="color:var(--ink)">Placement Assistance</h4><p class="mt-1 text-[13px]" style="color:var(--text-muted)">Direct access to 200+ hiring partners</p></div>
+    </div>
+
+    <!-- plans -->
+    <div class="mt-14 grid gap-8 lg:grid-cols-2 items-stretch">
+      <div class="rounded-3xl bg-white overflow-hidden flex flex-col" style="border:1px solid var(--line)">
+        <div class="relative overflow-hidden p-7" style="background:var(--ink)">
+          <div class="absolute -right-6 -top-10 h-32 w-32 rounded-full" style="background:rgba(255,255,255,0.06)"></div>
+          <span class="relative inline-block rounded-full bg-white/15 px-3 py-1 text-[11px] font-semibold text-white">Plan 1</span>
+          <h3 class="relative mt-3 text-[24px] font-bold text-white">AI Generalist Track</h3>
+          <p class="relative mt-1.5 text-[13.5px] text-white/60">Build skills across multiple high-demand domains</p>
+        </div>
+        <div class="p-7 flex flex-col flex-1">
+          <p class="text-[14px]" style="color:var(--text-muted)">Become a <span class="font-bold" style="color:var(--brand)">Multi-Skilled AI Generalist</span> — highly valuable in today's market</p>
+          <ul class="mt-5 grid gap-3 text-[14.5px] flex-1 content-start" style="color:var(--text)">
+            <li class="flex items-center gap-2.5"><i data-lucide="check-circle" style="color:var(--brand)"></i>Explore multiple domains before choosing</li>
+            <li class="flex items-center gap-2.5"><i data-lucide="check-circle" style="color:var(--brand)"></i>AI + Digital Marketing + Sales basics</li>
+            <li class="flex items-center gap-2.5"><i data-lucide="check-circle" style="color:var(--brand)"></i>Live project experience across domains</li>
+            <li class="flex items-center gap-2.5"><i data-lucide="check-circle" style="color:var(--brand)"></i>Career clarity & roadmap</li>
+            <li class="flex items-center gap-2.5"><i data-lucide="check-circle" style="color:var(--brand)"></i>Placement assistance</li>
+            <li class="flex items-center gap-2.5"><i data-lucide="check-circle" style="color:var(--brand)"></i>Resume & LinkedIn profile building</li>
+            <li class="flex items-center gap-2.5"><i data-lucide="check-circle" style="color:var(--brand)"></i>Mock interviews & soft-skills training</li>
+            <li class="flex items-center gap-2.5"><i data-lucide="check-circle" style="color:var(--brand)"></i>Weekly progress tracking with mentors</li>
+            <li class="flex items-center gap-2.5"><i data-lucide="check-circle" style="color:var(--brand)"></i>Access to community & peer learning groups</li>
+            <li class="flex items-center gap-2.5"><i data-lucide="check-circle" style="color:var(--brand)"></i>Certificate of completion</li>
+            <li class="flex items-center gap-2.5"><i data-lucide="check-circle" style="color:var(--brand)"></i>Flexible, self-paced learning schedule</li>
+          </ul>
+          <button class="mt-7 w-full rounded-xl py-3.5 text-[14px] font-semibold text-white" style="background:var(--ink)">Get Started</button>
+        </div>
+      </div>
+      <div class="relative rounded-3xl bg-white overflow-hidden flex flex-col" style="border:1.5px solid var(--brand)">
+        <div class="relative overflow-hidden p-7" style="background:var(--brand)">
+          <div class="absolute -right-6 -top-10 h-32 w-32 rounded-full" style="background:rgba(255,255,255,0.10)"></div>
+          <span class="absolute right-6 top-6 rounded-full bg-white px-3 py-1 text-[10.5px] font-bold uppercase tracking-wider" style="color:var(--brand)">Most Popular</span>
+          <span class="relative inline-block rounded-full bg-white/20 px-3 py-1 text-[11px] font-semibold text-white">Plan 2</span>
+          <h3 class="relative mt-3 text-[24px] font-bold text-white">AI Specialist Track</h3>
+          <p class="relative mt-1.5 text-[13.5px] text-white/80">Master one core domain + cross-domain AI skills</p>
+        </div>
+        <div class="p-7 flex flex-col flex-1">
+          <p class="text-[14px]" style="color:var(--text-muted)">Become a <span class="font-bold" style="color:var(--brand)">Multi-Skilled AI Generalist + Domain Expert</span> — highly valuable today</p>
+          <ul class="mt-5 grid gap-3 text-[14.5px] flex-1 content-start" style="color:var(--text)">
+            <li class="flex items-center gap-2.5"><i data-lucide="check-circle" style="color:var(--brand)"></i>Everything in Plan 1, plus deep specialization</li>
+            <li class="flex items-center gap-2.5"><i data-lucide="check-circle" style="color:var(--brand)"></i>Master one chosen domain deeply</li>
+            <li class="flex items-center gap-2.5"><i data-lucide="check-circle" style="color:var(--brand)"></i>Advanced AI tools & automation skills</li>
+            <li class="flex items-center gap-2.5"><i data-lucide="check-circle" style="color:var(--brand)"></i>Advanced portfolio + capstone project</li>
+            <li class="flex items-center gap-2.5"><i data-lucide="check-circle" style="color:var(--brand)"></i>Priority placement & interview prep</li>
+            <li class="flex items-center gap-2.5"><i data-lucide="check-circle" style="color:var(--brand)"></i>Opportunity to convert to full-time role</li>
+            <li class="flex items-center gap-2.5"><i data-lucide="check-circle" style="color:var(--brand)"></i>1:1 dedicated mentor for your chosen domain</li>
+            <li class="flex items-center gap-2.5"><i data-lucide="check-circle" style="color:var(--brand)"></i>Industry-recognized specialization certificate</li>
+            <li class="flex items-center gap-2.5"><i data-lucide="check-circle" style="color:var(--brand)"></i>Direct referrals to top hiring partners</li>
+            <li class="flex items-center gap-2.5"><i data-lucide="check-circle" style="color:var(--brand)"></i>Lifetime access to course updates & resources</li>
+            <li class="flex items-center gap-2.5"><i data-lucide="check-circle" style="color:var(--brand)"></i>Personal branding & LinkedIn optimization</li>
+          </ul>
+          <button class="btn-brand mt-7 w-full rounded-xl py-3.5 text-[14px] font-semibold">Get Started — Recommended</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- larger quote -->
+    <div class="mt-8 rounded-2xl p-6 text-center overflow-x-auto" style="background:var(--brand-soft);color:var(--ink);border:1px solid rgba(201,79,0,.2)">
+      <div class="large-quote font-medium max-w-3xl mx-auto">
+        "Don't just choose a career—<span style="color:var(--brand)" class="font-bold">test it, experience it,</span> and grow in the right direction."
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:var(--ink);color:rgba(255,255,255,.7)">
+  <div class="container-x grid gap-10 py-16 md:grid-cols-2 lg:grid-cols-4">
+    <div>
+      <a href="index.html" class="flex items-center gap-2"><span class="flex h-8 w-8 items-center justify-center rounded-lg" style="background:var(--brand)"><i data-lucide="graduation-cap" class="text-white"></i></span><span class="text-[17px] font-bold text-white">Career<span style="color:var(--brand)">Launchpad</span></span></a>
+      <p class="mt-4 text-[13.5px] leading-relaxed">Helping students and professionals discover, experience, and build the right career—through real projects, mentorship, and placement support.</p>
+      <div class="mt-5 flex gap-3">
+        <a href="#" class="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-white/70 hover:border-[color:var(--brand)] hover:text-white" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+        </a>
+        <a href="#" class="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-white/70 hover:border-[color:var(--brand)] hover:text-white" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+        </a>
+        <a href="#" class="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-white/70 hover:border-[color:var(--brand)] hover:text-white" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+        </a>
+        <a href="#" class="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-white/70 hover:border-[color:var(--brand)] hover:text-white" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+        </a>
+      </div>
+    </div>
+    <div><h4 class="mb-4 text-[14px] font-semibold text-white">Programs</h4><ul class="space-y-2.5 text-[13.5px]"><li class="flex items-center gap-2"><i data-lucide="chevron-right" class="text-[13px]" style="color:var(--brand)"></i><a href="career-starter.html" class="hover:text-white">Career Starter Program</a></li><li class="flex items-center gap-2"><i data-lucide="chevron-right" class="text-[13px]" style="color:var(--brand)"></i><a href="junior-career.html" class="hover:text-white">Junior Career Program</a></li><li class="flex items-center gap-2"><i data-lucide="chevron-right" class="text-[13px]" style="color:var(--brand)"></i><a href="pay-after-placement.html" class="hover:text-white">Pay After Placement</a></li><li class="flex items-center gap-2"><i data-lucide="chevron-right" class="text-[13px]" style="color:var(--brand)"></i><a href="internships.html" class="hover:text-white">Internship Programs</a></li><li class="flex items-center gap-2"><i data-lucide="chevron-right" class="text-[13px]" style="color:var(--brand)"></i><a href="experienced.html" class="hover:text-white">Experienced Professionals</a></li></ul></div>
+    <div><h4 class="mb-4 text-[14px] font-semibold text-white">Quick Links</h4><ul class="space-y-2.5 text-[13.5px]"><li class="flex items-center gap-2"><i data-lucide="chevron-right" class="text-[13px]" style="color:var(--brand)"></i><a href="#" class="hover:text-white">About Us</a></li><li class="flex items-center gap-2"><i data-lucide="chevron-right" class="text-[13px]" style="color:var(--brand)"></i><a href="#" class="hover:text-white">Success Stories</a></li><li class="flex items-center gap-2"><i data-lucide="chevron-right" class="text-[13px]" style="color:var(--brand)"></i><a href="#" class="hover:text-white">Hiring Partners</a></li><li class="flex items-center gap-2"><i data-lucide="chevron-right" class="text-[13px]" style="color:var(--brand)"></i><a href="#" class="hover:text-white">Blog</a></li><li class="flex items-center gap-2"><i data-lucide="chevron-right" class="text-[13px]" style="color:var(--brand)"></i><a href="#" class="hover:text-white">FAQs</a></li></ul></div>
+    <div>
+      <h4 class="mb-4 text-[14px] font-semibold text-white">Contact Us</h4>
+      <ul class="space-y-3 text-[13.5px]">
+        <li class="flex items-start gap-2.5"><i data-lucide="mail" style="color:var(--brand)"></i> hello@careerlaunchpad.com</li>
+        <li class="flex items-start gap-2.5"><i data-lucide="phone" style="color:var(--brand)"></i> +91 98765 43210</li>
+        <li class="flex items-start gap-2.5"><i data-lucide="map-pin" style="color:var(--brand)"></i> India · Remote First</li>
+      </ul>
+      <a href="schedule-call.html" class="btn-brand mt-5 inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-[13px] font-semibold text-white"><i data-lucide="phone"></i> Book a Call</a>
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="container-x flex flex-col md:flex-row items-center justify-between gap-3 py-5 text-[12.5px]">
+      <span>© 2026 CareerLaunchpad. All rights reserved.</span>
+      <div class="flex gap-5"><a href="#" class="hover:text-white">Privacy Policy</a><a href="#" class="hover:text-white">Terms of Service</a><a href="#" class="hover:text-white">Refund Policy</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+</body>
+</html>

@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CareerLaunchpad — Test, Experience &amp; Grow Your Career</title>
+  <meta name="description" content="Explore multiple domains, work on live projects, get mentorship and land your first job." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&family=Instrument+Serif&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --brand:#c94f00;
+      --brand-hover:#b34400;
+      --brand-soft:#fbe8db;
+      --ink:#171312;
+      --ink-soft:#27211f;
+      --surface:#f8f6f4;
+      --text:#232323;
+      --text-muted:#6b6b6b;
+      --line:#e6e2de;
+    }
+    html,body{font-family:'Inter',system-ui,sans-serif;color:var(--text);background:#fff}
+    h1,h2,h3,h4{font-family:'Manrope','Inter',sans-serif;letter-spacing:-0.02em}
+    .italic-serif{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400}
+    .pro-accent{font-family:'Playfair Display',serif;font-weight:700;font-style:normal;letter-spacing:-0.01em}
+    .container-x{width:100%;max-width:1280px;margin-inline:auto;padding-inline:24px}
+    @media(min-width:1024px){.container-x{padding-inline:80px}}
+    .btn-brand{background:var(--brand);color:#fff;transition:background .2s}
+    .btn-brand:hover{background:var(--brand-hover)}
+    .card-lift{}
+    .fade-up{animation:fadeUp .6s ease both}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+    [data-lucide]{width:1em;height:1em;stroke-width:2}
+    .hero-image-wrapper {
+      overflow: hidden;
+      border-radius: 1rem !important;
+    }
+    .hero-image-wrapper img {
+      filter: brightness(1.25) saturate(1.05);
+      border-radius: 1rem !important;
+    }
+    /* circular profile pics — !important overrides WordPress/theme global
+       img resets (e.g. img{max-width:100%;height:auto}) that otherwise
+       squash these into squares/ovals */
+    .profile-pic {
+      width: 40px !important;
+      height: 40px !important;
+      min-width: 40px !important;
+      min-height: 40px !important;
+      max-width: 40px !important;
+      max-height: 40px !important;
+      aspect-ratio: 1 / 1;
+      flex-shrink: 0;
+      display: block;
+      border-radius: 50% !important;
+      border: 2px solid var(--ink);
+      object-fit: cover;
+      object-position: center;
+      background: #e2dcd8;
+      box-sizing: border-box;
+    }
+    .badge-circle{
+      width:40px !important;
+      height:40px !important;
+      min-width:40px !important;
+      min-height:40px !important;
+      max-width:40px !important;
+      max-height:40px !important;
+      aspect-ratio: 1 / 1;
+      flex-shrink:0;
+      border-radius:50% !important;
+      box-sizing: border-box;
+    }
+
+    /* remove default blue tap/focus highlight everywhere, use brand orange instead */
+    *{ -webkit-tap-highlight-color: transparent; }
+    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible{
+      outline: 2px solid var(--brand);
+      outline-offset: 2px;
+    }
+    input:focus, select:focus, textarea:focus{
+      border-color: var(--brand) !important;
+      box-shadow: 0 0 0 3px var(--brand-soft);
+    }
+
+    /* audience tabs — orange hover/active instead of default blue */
+    .tab{
+      transition: all .2s ease;
+      background: #fff;
+    }
+    .tab:hover{
+      border-color: var(--brand) !important;
+      color: var(--brand) !important;
+      background: var(--brand-soft);
+    }
+    .tab.active{
+      border-color: var(--brand) !important;
+      color: var(--brand) !important;
+      background: var(--brand-soft);
+    }
+  </style>
+</head>
+<body class="bg-white">
+
+<!-- NAVBAR -->
+<header id="nav" class="sticky top-0 z-50 w-full bg-white/95 backdrop-blur border-b" style="border-color:var(--line)">
+  <div class="w-full flex h-[72px] items-center justify-between pl-0 pr-4 md:pr-8 lg:pr-16 lg:grid lg:grid-cols-3">
+    <a href="https://darksalmon-chough-605366.hostingersite.com/home/" class="flex items-center gap-2 pl-8 md:pl-14 lg:pl-32">
+      <span class="flex h-8 w-8 items-center justify-center rounded-lg" style="background:var(--brand)"><i data-lucide="graduation-cap" class="text-white text-[20px]"></i></span>
+      <span class="text-[19px] font-bold" style="color:var(--ink)">Career<span style="color:var(--brand)">Launchpad</span></span>
+    </a>
+    <nav class="hidden lg:flex items-center justify-center gap-6 pl-16 text-[15.5px] font-medium whitespace-nowrap" style="color:var(--text)">
+      <a href="https://darksalmon-chough-605366.hostingersite.com/career-starter/" class="whitespace-nowrap hover:text-[color:var(--brand)]">Career Starter</a>
+      <a href="https://darksalmon-chough-605366.hostingersite.com/junior-career/" class="whitespace-nowrap hover:text-[color:var(--brand)]">Junior Career</a>
+      <a href="https://darksalmon-chough-605366.hostingersite.com/pay-after-payment/" class="whitespace-nowrap hover:text-[color:var(--brand)]">Pay After Placement</a>
+      <a href="https://darksalmon-chough-605366.hostingersite.com/internship/" class="whitespace-nowrap hover:text-[color:var(--brand)]">Internships</a>
+      <a href="https://darksalmon-chough-605366.hostingersite.com/experienced/" class="whitespace-nowrap hover:text-[color:var(--brand)]">Experienced</a>
+    </nav>
+    <div class="hidden lg:flex items-center justify-end">
+      <a href="https://darksalmon-chough-605366.hostingersite.com/schedule-call/" class="btn-brand inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[14.5px] font-semibold"><i data-lucide="phone" class="text-[17px]"></i> Schedule Call</a>
+    </div>
+    <button onclick="document.getElementById('mnav').classList.toggle('hidden')" class="lg:hidden p-2 rounded-lg ml-auto" style="color:var(--ink)"><i data-lucide="menu"></i></button>
+  </div>
+  <div id="mnav" class="hidden lg:hidden border-t" style="border-color:var(--line)">
+    <div class="container-x flex flex-col gap-1 py-4 text-[15px] font-medium" style="color:var(--text)">
+      <a href="career-starter.html" class="px-3 py-2.5">Career Starter</a>
+      <a href="junior-career.html" class="px-3 py-2.5">Junior Career</a>
+      <a href="pay-after-placement.html" class="px-3 py-2.5">Pay After Placement</a>
+      <a href="internships.html" class="px-3 py-2.5">Internships</a>
+      <a href="experienced.html" class="px-3 py-2.5">Experienced</a>
+      <a href="schedule-call.html" class="btn-brand mt-2 flex items-center justify-center gap-2 rounded-full px-4 py-3 text-[14px]"><i data-lucide="phone"></i> Schedule Call</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO with original headline, rectangular image, professional font -->
+<section class="relative overflow-hidden" style="background:#1a1a1a">
+  <div class="w-full grid gap-0 py-16 md:py-20 lg:grid-cols-2 lg:grid-rows-[auto_auto_auto_auto]">
+    <div class="fade-up mb-6 pl-8 pr-4 md:pl-14 md:pr-8 lg:pl-32 lg:pr-8 lg:col-start-1 lg:row-start-1">
+      <span class="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[11.5px] font-semibold uppercase tracking-[0.14em] text-white" style="background:var(--ink-soft);border:1px solid rgba(255,255,255,.08)">
+        <span class="h-1.5 w-1.5 rounded-full" style="background:var(--brand)"></span> Now Enrolling · Limited Seats
+      </span>
+    </div>
+      <!-- original heading, more professional font styling (clean, sans-serif, refined weight) -->
+      <!-- row-start-2: top edge of this row is what the hero image's top will align to -->
+      <h1 class="pl-8 pr-4 md:pl-14 md:pr-8 lg:pl-32 lg:pr-8 lg:col-start-1 lg:row-start-2 text-[42px] md:text-[58px] font-bold leading-[1.08] text-white tracking-wide">
+        Don't Just Choose a <span class="pro-accent" style="color:var(--brand)">Career</span><span class="text-white/60"> — </span><br class="hidden md:block">
+        Test It, Experience It & <span class="pro-accent" style="color:var(--brand)">Grow</span>
+      </h1>
+      <!-- row-start-3: bottom edge of this row is what the hero image's bottom will align to -->
+      <p class="pl-8 pr-4 md:pl-14 md:pr-8 lg:pl-32 lg:pr-8 lg:col-start-1 lg:row-start-3 mt-6 max-w-xl text-[16px] leading-snug text-white/70">Explore multiple domains, work on live projects, get mentorship and land your first job—with programs designed for every stage of your career journey.</p>
+    <div class="pl-8 pr-4 md:pl-14 md:pr-8 lg:pl-32 lg:pr-8 lg:col-start-1 lg:row-start-4">
+      <div class="mt-8 flex flex-wrap gap-6">
+        <a href="career-starter.html" class="btn-brand inline-flex items-center gap-2 rounded-md px-9 py-5 text-[16px] font-semibold">Explore Programs <i data-lucide="arrow-right"></i></a>
+        <a href="schedule-call.html" class="inline-flex items-center gap-2 rounded-md px-9 py-5 text-[16px] font-semibold text-white hover:bg-white/10" style="background:var(--ink-soft);border:1px solid rgba(255,255,255,.12)"><i data-lucide="phone"></i> Schedule Free Call</a>
+      </div>
+      <div class="mt-8 flex items-center">
+        <!-- profile pictures inside circles -->
+        <div class="flex -space-x-2">
+          <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="profile" class="profile-pic border-2" style="border-color:var(--ink)">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="profile" class="profile-pic border-2" style="border-color:var(--ink)">
+          <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="profile" class="profile-pic border-2" style="border-color:var(--ink)">
+          <span class="badge-circle flex items-center justify-center rounded-full border-2 text-[11px] font-bold text-white" style="border-color:var(--ink);background:var(--brand)">10K+</span>
+          <span class="badge-circle flex items-center justify-center rounded-full border-2 text-[10.5px] font-bold text-white" style="border-color:var(--ink);background:var(--brand)">5K+</span>
+        </div>
+        <div class="ml-2.5">
+          <div class="text-[14px] font-semibold text-white">5000+ Students Trained</div>
+          <div class="flex items-center gap-1 text-[12px] text-white/60">
+            <i data-lucide="star" class="text-[12px]" style="color:var(--brand);fill:var(--brand)"></i>
+            <i data-lucide="star" class="text-[12px]" style="color:var(--brand);fill:var(--brand)"></i>
+            <i data-lucide="star" class="text-[12px]" style="color:var(--brand);fill:var(--brand)"></i>
+            <i data-lucide="star" class="text-[12px]" style="color:var(--brand);fill:var(--brand)"></i>
+            <i data-lucide="star" class="text-[12px]" style="color:var(--brand);fill:var(--brand)"></i>
+            <span class="ml-1">4.9/5 Rating</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- image column: spans row-start-2 (h1's row) through row-end-4 (end of the paragraph's row),
+         so its top lines up with the h1's top and its bottom lines up with the paragraph's last line -->
+    <div class="relative flex justify-center lg:justify-end px-4 md:px-8 lg:pr-32 lg:col-start-2 lg:row-start-2 lg:row-end-4 lg:self-stretch">
+      <!-- frame around the photo -->
+      <div class="relative w-full max-w-[520px] lg:max-w-[580px] lg:h-full">
+        <div class="relative overflow-hidden hero-image-wrapper w-full aspect-[4/2.8] lg:aspect-auto lg:h-full rounded-2xl">
+          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200" alt="Team collaboration" class="h-full w-full object-cover">
+        </div>
+      </div>
+      <div class="absolute left-4 md:left-6 -top-8 rounded-2xl px-3 py-2.5 backdrop-blur-sm transition-transform hover:-translate-y-1 w-[164px]" style="background:rgba(15,13,12,.92);box-shadow:0 12px 30px -16px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.08)">
+        <div class="flex items-center gap-3">
+          <span class="relative flex h-8 w-8 items-center justify-center rounded-lg shrink-0" style="background:linear-gradient(135deg, var(--brand), #7a3200);box-shadow:0 10px 22px -6px rgba(201,79,0,.65), inset 0 1px 0 rgba(255,255,255,.25)"><i data-lucide="trending-up" class="text-white text-[13px]"></i></span>
+          <div>
+            <div class="flex items-center gap-1.5 text-[9.5px] font-semibold uppercase tracking-wide text-white/55 leading-tight whitespace-nowrap">
+              <span class="relative flex h-1.5 w-1.5 shrink-0"><span class="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75" style="background:#4ade80"></span><span class="relative inline-flex h-1.5 w-1.5 rounded-full" style="background:#4ade80"></span></span>
+              Placement Rate
+            </div>
+            <div class="mt-1 text-[17px] font-extrabold text-white leading-tight">94%</div>
+          </div>
+        </div>
+      </div>
+      <div class="absolute -bottom-5 right-12 md:right-16 lg:right-24 rounded-2xl px-3 py-2.5 backdrop-blur-sm transition-transform hover:-translate-y-1 w-[164px]" style="background:rgba(15,13,12,.92);box-shadow:0 12px 30px -16px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.08)">
+        <div class="flex items-center gap-3">
+          <span class="flex h-8 w-8 items-center justify-center rounded-lg shrink-0" style="background:linear-gradient(135deg, var(--brand), #7a3200);box-shadow:0 10px 22px -6px rgba(201,79,0,.65), inset 0 1px 0 rgba(255,255,255,.25)"><i data-lucide="briefcase" class="text-white text-[13px]"></i></span>
+          <div>
+            <div class="flex items-center gap-1.5 text-[9.5px] font-semibold uppercase tracking-wide text-white/55 leading-tight whitespace-nowrap">
+              <span class="relative flex h-1.5 w-1.5 shrink-0"><span class="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75" style="background:#4ade80"></span><span class="relative inline-flex h-1.5 w-1.5 rounded-full" style="background:#4ade80"></span></span>
+              Hiring Partners
+            </div>
+            <div class="mt-1 text-[17px] font-extrabold text-white leading-tight">900+</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE STRIP -->
+<section class="border-b bg-white" style="border-color:var(--line)">
+  <div class="container-x grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 py-10">
+    <a href="career-starter.html" class="group flex flex-col items-center gap-2.5 text-center"><span class="flex h-14 w-14 items-center justify-center rounded-2xl group-hover:-translate-y-1 transition" style="background:var(--brand-soft);color:var(--brand)"><i data-lucide="rocket" class="text-[24px]"></i></span><span class="text-[13px] font-semibold" style="color:var(--ink)">Career Starter</span></a>
+    <a href="junior-career.html" class="group flex flex-col items-center gap-2.5 text-center"><span class="flex h-14 w-14 items-center justify-center rounded-2xl group-hover:-translate-y-1 transition" style="background:var(--brand-soft);color:var(--brand)"><i data-lucide="graduation-cap" class="text-[24px]"></i></span><span class="text-[13px] font-semibold" style="color:var(--ink)">Junior Career</span></a>
+    <a href="pay-after-placement.html" class="group flex flex-col items-center gap-2.5 text-center"><span class="flex h-14 w-14 items-center justify-center rounded-2xl group-hover:-translate-y-1 transition" style="background:var(--brand-soft);color:var(--brand)"><i data-lucide="wallet" class="text-[24px]"></i></span><span class="text-[13px] font-semibold" style="color:var(--ink)">Pay After Placement</span></a>
+    <a href="internships.html" class="group flex flex-col items-center gap-2.5 text-center"><span class="flex h-14 w-14 items-center justify-center rounded-2xl group-hover:-translate-y-1 transition" style="background:var(--brand-soft);color:var(--brand)"><i data-lucide="briefcase" class="text-[24px]"></i></span><span class="text-[13px] font-semibold" style="color:var(--ink)">Internships</span></a>
+    <a href="experienced.html" class="group flex flex-col items-center gap-2.5 text-center"><span class="flex h-14 w-14 items-center justify-center rounded-2xl group-hover:-translate-y-1 transition" style="background:var(--brand-soft);color:var(--brand)"><i data-lucide="user-check" class="text-[24px]"></i></span><span class="text-[13px] font-semibold" style="color:var(--ink)">Experienced</span></a>
+    <a href="schedule-call.html" class="group flex flex-col items-center gap-2.5 text-center"><span class="flex h-14 w-14 items-center justify-center rounded-2xl group-hover:-translate-y-1 transition" style="background:var(--brand-soft);color:var(--brand)"><i data-lucide="phone" class="text-[24px]"></i></span><span class="text-[13px] font-semibold" style="color:var(--ink)">Schedule Call</span></a>
+  </div>
+</section>
+
+<!-- SCHEDULE CALL section -->
+<section class="py-20" style="background:var(--surface)">
+  <div class="container-x">
+    <div class="mx-auto max-w-2xl text-center">
+      <span class="inline-flex items-center rounded-full px-4 py-1.5 text-[11.5px] font-semibold uppercase tracking-[0.14em]" style="background:var(--brand-soft);color:var(--brand);border:1px solid rgba(201,79,0,.2)">15-Min Meeting</span>
+      <h2 class="mt-4 font-bold" style="color:var(--ink);font-family:'Manrope','Inter',sans-serif;font-size:44px;line-height:1.1;letter-spacing:-0.02em">Schedule a <span style="font-family:'Playfair Display',serif;font-style:italic;font-weight:700;color:var(--brand)">Call</span></h2>
+      <p class="mt-4" style="color:var(--text-muted);font-family:'Inter',system-ui,sans-serif;font-size:16px;line-height:1.6;font-weight:400">Book a 15-min call with our career expert at just <span style="color:var(--ink);font-weight:700">₹999 + 18% GST</span> <span style="text-decoration:line-through;color:var(--text-muted)">(after discount)</span></p>
+    </div>
+
+    <div class="mx-auto mt-8 max-w-3xl rounded-3xl bg-white p-8" style="border:1px solid var(--line);box-shadow:0 20px 60px -30px rgba(0,0,0,.15)">
+      <!-- Tabs: compact button style, orange hover/active (no blue) -->
+      <div class="mb-6 flex justify-center gap-2">
+        <button data-tab="student" class="tab active flex items-center justify-center gap-2 rounded-full px-4 py-2.5 text-[13px] font-semibold" style="border:1px solid var(--line);color:var(--text)"><i data-lucide="user"></i> Student</button>
+        <button data-tab="colleges" class="tab flex items-center justify-center gap-2 rounded-full px-4 py-2.5 text-[13px] font-semibold" style="border:1px solid var(--line);color:var(--text)"><i data-lucide="building-2"></i> Colleges</button>
+        <button data-tab="companies" class="tab flex items-center justify-center gap-2 rounded-full px-4 py-2.5 text-[13px] font-semibold" style="border:1px solid var(--line);color:var(--text)"><i data-lucide="building"></i> Companies</button>
+      </div>
+
+      <div class="mb-6 mt-6 flex items-center justify-between text-[13px]">
+        <div class="flex items-center gap-2 font-semibold" style="color:var(--ink)"><span class="flex h-6 w-6 items-center justify-center rounded-full text-[11px] text-white" style="background:var(--brand)">1</span> Your Details</div>
+        <div class="mx-3 h-px flex-1" style="background:var(--line)"></div>
+        <div class="flex items-center gap-2" style="color:var(--text-muted)"><span class="flex h-6 w-6 items-center justify-center rounded-full text-[11px]" style="background:#eee;color:var(--text-muted)">2</span> Payment</div>
+      </div>
+      <!-- STUDENT FORM -->
+      <form data-form="student" class="space-y-4">
+        <div><label class="mb-1.5 block text-[13px] font-medium">Full Name *</label><input placeholder="Enter your full name" class="w-full rounded-xl px-4 py-3 text-[14px] outline-none focus:border-[color:var(--brand)]" style="border:1px solid var(--line)"></div>
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div><label class="mb-1.5 block text-[13px] font-medium">Email Address *</label><input placeholder="you@email.com" class="w-full rounded-xl px-4 py-3 text-[14px] outline-none focus:border-[color:var(--brand)]" style="border:1px solid var(--line)"></div>
+          <div>
+            <label class="mb-1.5 block text-[13px] font-medium">Phone Number *</label>
+            <div class="flex gap-2"><span class="flex items-center rounded-xl px-3 text-[14px] font-medium" style="border:1px solid var(--line)">+91</span><input placeholder="Enter 10-digit number" class="w-full rounded-xl px-4 py-3 text-[14px] outline-none" style="border:1px solid var(--line)"></div>
+          </div>
+        </div>
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div><label class="mb-1.5 block text-[13px] font-medium">Date of Birth</label><input type="date" class="w-full rounded-xl px-4 py-3 text-[14px] outline-none focus:border-[color:var(--brand)]" style="border:1px solid var(--line);color:var(--text-muted)"></div>
+          <div><label class="mb-1.5 block text-[13px] font-medium">Current City</label><input placeholder="Enter your city" class="w-full rounded-xl px-4 py-3 text-[14px] outline-none focus:border-[color:var(--brand)]" style="border:1px solid var(--line)"></div>
+        </div>
+        <div>
+          <label class="mb-1.5 block text-[13px] font-medium">Highest Qualification</label>
+          <select class="w-full rounded-xl px-4 py-3 text-[14px] outline-none" style="border:1px solid var(--line);color:var(--text-muted)"><option>Select your qualification</option><option>High School</option><option>Diploma</option><option>Undergraduate</option><option>Postgraduate</option><option>Other</option></select>
+        </div>
+        <div>
+          <label class="mb-1.5 block text-[13px] font-medium">Which program interests you?</label>
+          <select class="w-full rounded-xl px-4 py-3 text-[14px] outline-none" style="border:1px solid var(--line);color:var(--text-muted)"><option>Select a program</option><option>Career Starter Program</option><option>Junior Career Program</option><option>Pay After Placement</option><option>Internship Programs</option><option>Experienced Professionals</option></select>
+        </div>
+        <button type="button" class="btn-brand mt-2 flex w-full items-center justify-center gap-2 rounded-xl py-3.5 text-[14px] font-semibold">Proceed to Payment <i data-lucide="chevron-right"></i></button>
+      </form>
+
+      <!-- COLLEGES FORM -->
+      <form data-form="colleges" class="hidden space-y-4">
+        <div><label class="mb-1.5 block text-[13px] font-medium">College / Institution Name *</label><input placeholder="Enter college name" class="w-full rounded-xl px-4 py-3 text-[14px] outline-none focus:border-[color:var(--brand)]" style="border:1px solid var(--line)"></div>
+        <div><label class="mb-1.5 block text-[13px] font-medium">Contact Person Name *</label><input placeholder="Enter contact person's name" class="w-full rounded-xl px-4 py-3 text-[14px] outline-none focus:border-[color:var(--brand)]" style="border:1px solid var(--line)"></div>
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div><label class="mb-1.5 block text-[13px] font-medium">Email Address *</label><input placeholder="you@college.edu" class="w-full rounded-xl px-4 py-3 text-[14px] outline-none focus:border-[color:var(--brand)]" style="border:1px solid var(--line)"></div>
+          <div>
+            <label class="mb-1.5 block text-[13px] font-medium">Phone Number *</label>
+            <div class="flex gap-2"><span class="flex items-center rounded-xl px-3 text-[14px] font-medium" style="border:1px solid var(--line)">+91</span><input placeholder="Enter 10-digit number" class="w-full rounded-xl px-4 py-3 text-[14px] outline-none" style="border:1px solid var(--line)"></div>
+          </div>
+        </div>
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div><label class="mb-1.5 block text-[13px] font-medium">City *</label><input placeholder="Enter city" class="w-full rounded-xl px-4 py-3 text-[14px] outline-none focus:border-[color:var(--brand)]" style="border:1px solid var(--line)"></div>
+          <div><label class="mb-1.5 block text-[13px] font-medium">Approx. No. of Students</label><input placeholder="e.g. 500" class="w-full rounded-xl px-4 py-3 text-[14px] outline-none focus:border-[color:var(--brand)]" style="border:1px solid var(--line)"></div>
+        </div>
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div><label class="mb-1.5 block text-[13px] font-medium">Designation</label><input placeholder="e.g. Placement Officer" class="w-full rounded-xl px-4 py-3 text-[14px] outline-none focus:border-[color:var(--brand)]" style="border:1px solid var(--line)"></div>
+          <div><label class="mb-1.5 block text-[13px] font-medium">Preferred Month for Drive</label><input placeholder="e.g. September 2026" class="w-full rounded-xl px-4 py-3 text-[14px] outline-none focus:border-[color:var(--brand)]" style="border:1px solid var(--line)"></div>
+        </div>
+        <div>
+          <label class="mb-1.5 block text-[13px] font-medium">What are you looking for?</label>
+          <select class="w-full rounded-xl px-4 py-3 text-[14px] outline-none" style="border:1px solid var(--line);color:var(--text-muted)"><option>Select an option</option><option>Campus Placement Drive</option><option>Skill Development Workshops</option><option>Curriculum Partnership</option><option>Guest Lectures / Webinars</option><option>Internship Tie-ups</option></select>
+        </div>
+        <div><label class="mb-1.5 block text-[13px] font-medium">Additional Notes</label><textarea rows="3" placeholder="Share any specific requirements" class="w-full rounded-xl px-4 py-3 text-[14px] outline-none focus:border-[color:var(--brand)] resize-none" style="border:1px solid var(--line)"></textarea></div>
+        <button type="button" class="btn-brand mt-2 flex w-full items-center justify-center gap-2 rounded-xl py-3.5 text-[14px] font-semibold">Proceed to Payment <i data-lucide="chevron-right"></i></button>
+      </form>
+
+      <!-- COMPANIES FORM -->
+      <form data-form="companies" class="hidden space-y-4">
+        <div><label class="mb-1.5 block text-[13px] font-medium">Company Name *</label><input placeholder="Enter company name" class="w-full rounded-xl px-4 py-3 text-[14px] outline-none focus:border-[color:var(--brand)]" style="border:1px solid var(--line)"></div>
+        <div><label class="mb-1.5 block text-[13px] font-medium">Contact Person / HR Name *</label><input placeholder="Enter contact person's name" class="w-full rounded-xl px-4 py-3 text-[14px] outline-none focus:border-[color:var(--brand)]" style="border:1px solid var(--line)"></div>
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div><label class="mb-1.5 block text-[13px] font-medium">Work Email Address *</label><input placeholder="you@company.com" class="w-full rounded-xl px-4 py-3 text-[14px] outline-none focus:border-[color:var(--brand)]" style="border:1px solid var(--line)"></div>
+          <div>
+            <label class="mb-1.5 block text-[13px] font-medium">Phone Number *</label>
+            <div class="flex gap-2"><span class="flex items-center rounded-xl px-3 text-[14px] font-medium" style="border:1px solid var(--line)">+91</span><input placeholder="Enter 10-digit number" class="w-full rounded-xl px-4 py-3 text-[14px] outline-none" style="border:1px solid var(--line)"></div>
+          </div>
+        </div>
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div><label class="mb-1.5 block text-[13px] font-medium">Company Size</label><select class="w-full rounded-xl px-4 py-3 text-[14px] outline-none" style="border:1px solid var(--line);color:var(--text-muted)"><option>Select company size</option><option>1–10 Employees</option><option>11–50 Employees</option><option>51–200 Employees</option><option>201–1000 Employees</option><option>1000+ Employees</option></select></div>
+          <div><label class="mb-1.5 block text-[13px] font-medium">Open Roles to Hire For</label><input placeholder="e.g. 5 Software Engineers" class="w-full rounded-xl px-4 py-3 text-[14px] outline-none focus:border-[color:var(--brand)]" style="border:1px solid var(--line)"></div>
+        </div>
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div><label class="mb-1.5 block text-[13px] font-medium">Industry</label><input placeholder="e.g. IT Services" class="w-full rounded-xl px-4 py-3 text-[14px] outline-none focus:border-[color:var(--brand)]" style="border:1px solid var(--line)"></div>
+          <div><label class="mb-1.5 block text-[13px] font-medium">Preferred Hiring Timeline</label><input placeholder="e.g. Within 30 days" class="w-full rounded-xl px-4 py-3 text-[14px] outline-none focus:border-[color:var(--brand)]" style="border:1px solid var(--line)"></div>
+        </div>
+        <div>
+          <label class="mb-1.5 block text-[13px] font-medium">What are you looking for?</label>
+          <select class="w-full rounded-xl px-4 py-3 text-[14px] outline-none" style="border:1px solid var(--line);color:var(--text-muted)"><option>Select an option</option><option>Hire Trained Candidates</option><option>Campus Hiring Partnership</option><option>Internship-to-Hire Program</option><option>Custom Talent Pipeline</option><option>Upskilling Existing Team</option></select>
+        </div>
+        <div><label class="mb-1.5 block text-[13px] font-medium">Additional Notes</label><textarea rows="3" placeholder="Share any specific requirements" class="w-full rounded-xl px-4 py-3 text-[14px] outline-none focus:border-[color:var(--brand)] resize-none" style="border:1px solid var(--line)"></textarea></div>
+        <button type="button" class="btn-brand mt-2 flex w-full items-center justify-center gap-2 rounded-xl py-3.5 text-[14px] font-semibold">Proceed to Payment <i data-lucide="chevron-right"></i></button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:var(--ink);color:rgba(255,255,255,.7)">
+  <div class="container-x grid gap-10 py-16 md:grid-cols-2 lg:grid-cols-4">
+    <div>
+      <a href="index.html" class="flex items-center gap-2"><span class="flex h-8 w-8 items-center justify-center rounded-lg" style="background:var(--brand)"><i data-lucide="graduation-cap" class="text-white"></i></span><span class="text-[17px] font-bold text-white">Career<span style="color:var(--brand)">Launchpad</span></span></a>
+      <p class="mt-4 text-[13.5px] leading-relaxed">Helping students and professionals discover, experience, and build the right career—through real projects, mentorship, and placement support.</p>
+      <div class="mt-5 flex gap-3">
+        <a href="#" class="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-white/70 hover:border-[color:var(--brand)] hover:text-white" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+        </a>
+        <a href="#" class="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-white/70 hover:border-[color:var(--brand)] hover:text-white" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+        </a>
+        <a href="#" class="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-white/70 hover:border-[color:var(--brand)] hover:text-white" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+        </a>
+        <a href="#" class="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-white/70 hover:border-[color:var(--brand)] hover:text-white" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+        </a>
+      </div>
+    </div>
+    <div><h4 class="mb-4 text-[14px] font-semibold text-white">Programs</h4><ul class="space-y-2.5 text-[13.5px]"><li class="flex items-center gap-2"><i data-lucide="chevron-right" class="text-[13px]" style="color:var(--brand)"></i><a href="career-starter.html" class="hover:text-white">Career Starter Program</a></li><li class="flex items-center gap-2"><i data-lucide="chevron-right" class="text-[13px]" style="color:var(--brand)"></i><a href="junior-career.html" class="hover:text-white">Junior Career Program</a></li><li class="flex items-center gap-2"><i data-lucide="chevron-right" class="text-[13px]" style="color:var(--brand)"></i><a href="pay-after-placement.html" class="hover:text-white">Pay After Placement</a></li><li class="flex items-center gap-2"><i data-lucide="chevron-right" class="text-[13px]" style="color:var(--brand)"></i><a href="internships.html" class="hover:text-white">Internship Programs</a></li><li class="flex items-center gap-2"><i data-lucide="chevron-right" class="text-[13px]" style="color:var(--brand)"></i><a href="experienced.html" class="hover:text-white">Experienced Professionals</a></li></ul></div>
+    <div><h4 class="mb-4 text-[14px] font-semibold text-white">Quick Links</h4><ul class="space-y-2.5 text-[13.5px]"><li class="flex items-center gap-2"><i data-lucide="chevron-right" class="text-[13px]" style="color:var(--brand)"></i><a href="#" class="hover:text-white">About Us</a></li><li class="flex items-center gap-2"><i data-lucide="chevron-right" class="text-[13px]" style="color:var(--brand)"></i><a href="#" class="hover:text-white">Success Stories</a></li><li class="flex items-center gap-2"><i data-lucide="chevron-right" class="text-[13px]" style="color:var(--brand)"></i><a href="#" class="hover:text-white">Hiring Partners</a></li><li class="flex items-center gap-2"><i data-lucide="chevron-right" class="text-[13px]" style="color:var(--brand)"></i><a href="#" class="hover:text-white">Blog</a></li><li class="flex items-center gap-2"><i data-lucide="chevron-right" class="text-[13px]" style="color:var(--brand)"></i><a href="#" class="hover:text-white">FAQs</a></li></ul></div>
+    <div>
+      <h4 class="mb-4 text-[14px] font-semibold text-white">Contact Us</h4>
+      <ul class="space-y-3 text-[13.5px]">
+        <li class="flex items-start gap-2.5"><i data-lucide="mail" style="color:var(--brand)"></i> hello@careerlaunchpad.com</li>
+        <li class="flex items-start gap-2.5"><i data-lucide="phone" style="color:var(--brand)"></i> +91 98765 43210</li>
+        <li class="flex items-start gap-2.5"><i data-lucide="map-pin" style="color:var(--brand)"></i> India · Remote First</li>
+      </ul>
+      <a href="schedule-call.html" class="btn-brand mt-5 inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-[13px] font-semibold text-white"><i data-lucide="phone"></i> Book a Call</a>
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="container-x flex flex-col md:flex-row items-center justify-between gap-3 py-5 text-[12.5px]">
+      <span>© 2026 CareerLaunchpad. All rights reserved.</span>
+      <div class="flex gap-5"><a href="#" class="hover:text-white">Privacy Policy</a><a href="#" class="hover:text-white">Terms of Service</a><a href="#" class="hover:text-white">Refund Policy</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  lucide.createIcons();
+  window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('shadow-lg',scrollY>8)},{passive:true});
+  // audience tabs (orange active/hover state)
+  document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
+    const target = t.getAttribute('data-tab');
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    document.querySelectorAll('[data-form]').forEach(f=>{
+      f.classList.toggle('hidden', f.getAttribute('data-form') !== target);
+    });
+  }));
+</script>
+</body>
+</html>

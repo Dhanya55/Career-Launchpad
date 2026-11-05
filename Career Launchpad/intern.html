@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Internship Programs — CareerLaunchpad</title>
+  <meta name="description" content="Professional internships with real projects, industry mentorship & certificate of completion.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brand: #c94f00;
+      --brand-hover: #b34400;
+      --brand-soft: #fbe8db;
+      --ink: #171312;
+      --ink-soft: #27211f;
+      --surface: #f8f6f4;
+      --text: #232323;
+      --text-muted: #6b6b6b;
+      --line: #e6e2de;
+    }
+    body { font-family: 'Inter', sans-serif; color: var(--text); }
+    h1, h2, h3, h4 { font-family: 'Manrope', sans-serif; letter-spacing: -0.02em; }
+    .italic-serif { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700; }
+    .container-x { max-width: 1280px; margin-inline: auto; padding-inline: 24px; }
+    @media (min-width: 1024px) { .container-x { padding-inline: 60px; } }
+    .btn-brand { background: var(--brand); color: #fff; }
+    .btn-brand:hover { background: var(--brand-hover); }
+    .card-lift { transition: 0.25s; }
+    .card-lift:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -20px rgba(201, 79, 0, 0.25); }
+    [data-lucide] { width: 1em; height: 1em; stroke-width: 2; }
+
+    /* ----- HERO (matched to Pay After Placement program pages) ----- */
+    .hero-gradient { background: linear-gradient(135deg, #f2650a 0%, #c94f00 45%, #a83e00 100%); position: relative; overflow: hidden; }
+    .hero-gradient::before {
+      content: "";
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 80% 20%, rgba(255,255,255,0.15), transparent 55%);
+    }
+    .hero-gradient::after {
+      content: "";
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(115deg, transparent 38%, rgba(255,255,255,0.10) 41%, rgba(255,255,255,0.10) 43%, transparent 46%),
+        linear-gradient(115deg, transparent 54%, rgba(255,255,255,0.16) 57%, rgba(255,255,255,0.16) 59%, transparent 62%),
+        linear-gradient(115deg, transparent 68%, rgba(255,255,255,0.08) 71%, rgba(255,255,255,0.08) 73%, transparent 76%);
+      mix-blend-mode: overlay;
+      pointer-events: none;
+    }
+    .hero-badge {
+      border: 1.5px solid rgba(255,255,255,0.7);
+      background: transparent;
+    }
+
+    .section-label {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em;
+      color: var(--brand); background: var(--brand-soft); padding: 0.35rem 0.9rem; border-radius: 100px;
+    }
+
+    .internship-card .card-image {
+      transition: 0.3s;
+    }
+    .internship-card:hover .card-image {
+      transform: scale(1.05);
+    }
+
+    /* Square feature cards (matches program pages design system) */
+    .square-card {
+      border-radius: 1.25rem; padding: 1.5rem 1.4rem; background: white; border: 1px solid var(--line);
+      transition: 0.2s; display: flex; flex-direction: column; justify-content: flex-start;
+      align-items: flex-start; width: 100%; height: 100%;
+    }
+    .square-card:hover { border-color: var(--brand); box-shadow: 0 8px 24px -8px rgba(201, 79, 0, 0.1); transform: translateY(-3px); }
+    .square-card .icon-wrap {
+      flex-shrink: 0; margin-bottom: 0.9rem; display: flex; align-items: center; justify-content: center;
+      width: 3.2rem; height: 3.2rem; border-radius: 0.8rem; background: var(--brand-soft); color: var(--brand); font-size: 1.25rem;
+    }
+    .square-card h4 { font-size: 1.05rem; font-weight: 700; color: var(--ink); margin: 0 0 0.45rem; line-height: 1.35; }
+    .square-card p { font-size: 0.9rem; color: var(--text-muted); margin: 0; line-height: 1.6; }
+
+    /* Gain cards — redesigned "What You'll Gain" widgets */
+    .gain-card {
+      border-radius: 1.25rem;
+      padding: 1.75rem 1.6rem;
+      background: white;
+      border: 1px solid var(--line);
+      transition: 0.2s;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .gain-card:hover {
+      border-color: var(--brand);
+      box-shadow: 0 14px 30px -14px rgba(201, 79, 0, 0.2);
+      transform: translateY(-3px);
+    }
+    .gain-card .icon-wrap {
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      width: 3.2rem; height: 3.2rem; border-radius: 0.8rem;
+      background: var(--brand-soft); color: var(--brand); font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .gain-card h4 {
+      font-size: 1.05rem; font-weight: 700; color: var(--ink); margin: 0 0 0.85rem; line-height: 1.35;
+    }
+    .gain-card hr.gain-divider {
+      border: none; border-top: 1px solid var(--line); margin: 0 0 0.9rem;
+    }
+    .gain-card p {
+      font-size: 0.9rem; color: var(--text-muted); margin: 0; line-height: 1.6;
+    }
+
+    /* Stat cards */
+    .stat-card {
+      border-radius: 1.25rem;
+      background: white;
+      border: 1px solid var(--line);
+      padding: 1.75rem 1.5rem;
+      text-align: center;
+      transition: 0.2s;
+    }
+    .stat-card:hover { border-color: var(--brand); box-shadow: 0 14px 30px -14px rgba(201, 79, 0, 0.2); transform: translateY(-3px); }
+    .stat-card .icon-wrap {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 3rem; height: 3rem; border-radius: 0.8rem; background: var(--brand-soft); color: var(--brand); font-size: 1.2rem;
+      margin: 0 auto 0.9rem;
+    }
+    .stat-card .num { font-family: 'Manrope', sans-serif; font-size: 2.1rem; font-weight: 800; color: var(--ink); line-height: 1; }
+    .stat-card .label { margin-top: 0.5rem; font-size: 0.82rem; color: var(--text-muted); font-weight: 500; }
+
+    /* Application timeline (horizontal) */
+    .timeline-track { position: relative; }
+    .timeline-track::before {
+      content: ""; position: absolute; left: 0; right: 0; top: 1.35rem; height: 2px; background: var(--line);
+    }
+    @media (max-width: 767px) { .timeline-track::before { display: none; } }
+    .timeline-stop { position: relative; text-align: left; }
+    .timeline-stop .dot {
+      display: flex; align-items: center; justify-content: center;
+      width: 2.7rem; height: 2.7rem; border-radius: 999px; background: white; border: 2px solid var(--brand); color: var(--brand);
+      font-weight: 800; font-size: 0.9rem; position: relative; z-index: 1;
+    }
+    .timeline-stop .date { margin-top: 0.9rem; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--brand); }
+    .timeline-stop h4 { font-size: 0.95rem; font-weight: 700; color: var(--ink); margin: 0.3rem 0 0.35rem; }
+    .timeline-stop p { font-size: 0.83rem; color: var(--text-muted); line-height: 1.55; margin: 0; }
+  </style>
+</head>
+<body class="bg-white">
+
+<!-- NAVBAR - Logo left, Schedule Call right -->
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b" style="border-color:var(--line)">
+  <div class="container-x flex h-[72px] items-center justify-between">
+    <!-- Logo - left corner -->
+    <a href="index.html" class="flex items-center gap-2 flex-shrink-0">
+      <span class="flex h-8 w-8 items-center justify-center rounded-lg" style="background:var(--brand)">
+        <i data-lucide="graduation-cap" class="text-white"></i>
+      </span>
+      <span class="text-[17px] font-bold" style="color:var(--ink)">Career<span style="color:var(--brand)">Launchpad</span></span>
+    </a>
+    
+    <!-- Center Nav -->
+    <nav class="hidden lg:flex gap-7 text-[14px] font-medium">
+      <a href="career-starter.html">Career Starter</a>
+      <a href="junior-career.html">Junior Career</a>
+      <a href="pay-after-placement.html">Pay After Placement</a>
+      <a href="internships.html" style="color:var(--brand)">Internships</a>
+      <a href="experienced.html">Experienced</a>
+    </nav>
+    
+    <!-- Schedule Call - right corner -->
+    <a href="schedule-call.html" class="btn-brand hidden lg:inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-[13px] font-semibold flex-shrink-0">
+      <i data-lucide="phone"></i> Schedule Call
+    </a>
+    
+    <!-- Mobile menu button -->
+    <button onclick="document.getElementById('mnav').classList.toggle('hidden')" class="lg:hidden p-2">
+      <i data-lucide="menu"></i>
+    </button>
+  </div>
+  <div id="mnav" class="hidden lg:hidden border-t" style="border-color:var(--line)">
+    <div class="container-x flex flex-col gap-1 py-4 text-[15px]">
+      <a href="career-starter.html" class="px-3 py-2.5">Career Starter</a>
+      <a href="junior-career.html" class="px-3 py-2.5">Junior Career</a>
+      <a href="pay-after-placement.html" class="px-3 py-2.5">Pay After Placement</a>
+      <a href="internships.html" class="px-3 py-2.5">Internships</a>
+      <a href="experienced.html" class="px-3 py-2.5">Experienced</a>
+      <a href="schedule-call.html" class="btn-brand rounded-full px-4 py-2.5 text-[13px] font-semibold text-center mt-2">Schedule Call</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO (matched to Pay After Placement program pages) -->
+<section class="relative overflow-hidden hero-gradient">
+  <div class="container-x relative py-14 md:py-20">
+    <div class="max-w-3xl mx-auto text-center flex flex-col items-center">
+      <span class="hero-badge inline-flex rounded-full px-5 py-2 text-[11.5px] font-bold uppercase tracking-[0.14em] text-white">Career Accelerator</span>
+      <h1 class="mx-auto mt-7 max-w-3xl text-[34px] md:text-[52px] font-extrabold leading-[1.12] text-white">
+        Professional internships that get you hired
+      </h1>
+      <p class="mx-auto mt-6 max-w-2xl text-[16px] leading-relaxed text-white/90">
+        Real project experience, industry mentorship, a certificate of completion, and career support — all in one program.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="#tracks" class="inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-[14.5px] font-semibold" style="background:#fff;color:var(--brand)">
+          <i data-lucide="compass"></i> Explore Tracks
+        </a>
+        <a href="schedule-call.html" class="inline-flex items-center gap-2 rounded-full border-2 border-white/50 px-6 py-3.5 text-[14.5px] font-semibold text-white hover:bg-white/10">
+          <i data-lucide="phone"></i> Talk to Us First
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK STATS BADGES -->
+<section class="py-8 bg-white">
+  <div class="container-x">
+    <div class="grid gap-3 md:grid-cols-4">
+      <div class="flex items-center gap-3 rounded-2xl p-4" style="background:var(--surface);border:1px solid var(--line)">
+        <span class="flex h-10 w-10 items-center justify-center rounded-xl" style="background:var(--brand-soft);color:var(--brand)"><i data-lucide="briefcase"></i></span>
+        <span class="text-[13.5px] font-semibold" style="color:var(--ink)">Real Projects</span>
+      </div>
+      <div class="flex items-center gap-3 rounded-2xl p-4" style="background:var(--surface);border:1px solid var(--line)">
+        <span class="flex h-10 w-10 items-center justify-center rounded-xl" style="background:var(--brand-soft);color:var(--brand)"><i data-lucide="graduation-cap"></i></span>
+        <span class="text-[13.5px] font-semibold" style="color:var(--ink)">Industry Mentorship</span>
+      </div>
+      <div class="flex items-center gap-3 rounded-2xl p-4" style="background:var(--surface);border:1px solid var(--line)">
+        <span class="flex h-10 w-10 items-center justify-center rounded-xl" style="background:var(--brand-soft);color:var(--brand)"><i data-lucide="award"></i></span>
+        <span class="text-[13.5px] font-semibold" style="color:var(--ink)">Certificate of Completion</span>
+      </div>
+      <div class="flex items-center gap-3 rounded-2xl p-4" style="background:var(--surface);border:1px solid var(--line)">
+        <span class="flex h-10 w-10 items-center justify-center rounded-xl" style="background:var(--brand-soft);color:var(--brand)"><i data-lucide="users"></i></span>
+        <span class="text-[13.5px] font-semibold" style="color:var(--ink)">900+ Hiring Partners</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERNSHIP TRACKS -->
+<section id="tracks" class="py-16" style="background:var(--surface)">
+  <div class="container-x">
+    <div class="text-center">
+      <h2 class="text-[30px] md:text-[40px] font-bold" style="color:var(--ink)">Choose Your <span class="italic-serif" style="color:var(--brand)">Internship</span> Track</h2>
+      <p class="mx-auto mt-4 max-w-xl text-[15px]" style="color:var(--text-muted)">Six tracks, same premium experience—focused on your domain of interest.</p>
+    </div>
+    <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <!-- Track 1: HR -->
+      <div class="internship-card card-lift flex flex-col overflow-hidden rounded-3xl bg-white" style="border:1px solid var(--line)">
+        <div class="h-40 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=800&auto=format&fit=crop" alt="HR professionals shaking hands" class="card-image h-full w-full object-cover">
+        </div>
+        <div class="flex flex-1 flex-col p-6">
+          <h3 class="text-[16.5px] font-bold" style="color:var(--ink)">Human Resources (HR)</h3>
+          <p class="mt-2 flex-1 text-[13.5px]" style="color:var(--text-muted)">Learn talent acquisition, employee engagement, and HR operations in real teams.</p>
+          <a href="hr.html" class="mt-5 inline-flex items-center gap-1.5 text-[13.5px] font-semibold" style="color:var(--brand)">Apply Now <i data-lucide="arrow-right"></i></a>
+        </div>
+      </div>
+      <!-- Track 2: Business Development -->
+      <div class="internship-card card-lift flex flex-col overflow-hidden rounded-3xl bg-white" style="border:1px solid var(--line)">
+        <div class="h-40 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop" alt="Business development team reviewing sales strategy" class="card-image h-full w-full object-cover">
+        </div>
+        <div class="flex flex-1 flex-col p-6">
+          <h3 class="text-[16.5px] font-bold" style="color:var(--ink)">Business Development, Marketing & Sales</h3>
+          <p class="mt-2 flex-1 text-[13.5px]" style="color:var(--text-muted)">Drive revenue: lead generation, client outreach, sales funnels, and CRM tools.</p>
+          <a href="bdsm.html" class="mt-5 inline-flex items-center gap-1.5 text-[13.5px] font-semibold" style="color:var(--brand)">Apply Now <i data-lucide="arrow-right"></i></a>
+        </div>
+      </div>
+      <!-- Track 3: Web/App Development -->
+      <div class="internship-card card-lift flex flex-col overflow-hidden rounded-3xl bg-white" style="border:1px solid var(--line)">
+        <div class="h-40 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop" alt="Laptop screen showing lines of code" class="card-image h-full w-full object-cover">
+        </div>
+        <div class="flex flex-1 flex-col p-6">
+          <h3 class="text-[16.5px] font-bold" style="color:var(--ink)">Web/App & Product Development</h3>
+          <p class="mt-2 flex-1 text-[13.5px]" style="color:var(--text-muted)">Ship real features with React, APIs, and modern product workflows.</p>
+          <a href="wap.html" class="mt-5 inline-flex items-center gap-1.5 text-[13.5px] font-semibold" style="color:var(--brand)">Apply Now <i data-lucide="arrow-right"></i></a>
+        </div>
+      </div>
+      <!-- Track 4: Digital Marketing -->
+      <div class="internship-card card-lift flex flex-col overflow-hidden rounded-3xl bg-white" style="border:1px solid var(--line)">
+        <div class="h-40 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1686061592689-312bbfb5c055?q=80&w=800&auto=format&fit=crop" alt="Marketing analytics dashboard with performance charts" class="card-image h-full w-full object-cover">
+        </div>
+        <div class="flex flex-1 flex-col p-6">
+          <h3 class="text-[16.5px] font-bold" style="color:var(--ink)">Digital Marketing & Branding with AI</h3>
+          <p class="mt-2 flex-1 text-[13.5px]" style="color:var(--text-muted)">SEO, paid ads, social & AI-powered content workflows that convert.</p>
+          <a href="bad.html" class="mt-5 inline-flex items-center gap-1.5 text-[13.5px] font-semibold" style="color:var(--brand)">Apply Now <i data-lucide="arrow-right"></i></a>
+        </div>
+      </div>
+      <!-- Track 5: Data Science -->
+      <div class="internship-card card-lift flex flex-col overflow-hidden rounded-3xl bg-white" style="border:1px solid var(--line)">
+        <div class="h-40 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop" alt="Graphs of performance analytics on a laptop screen" class="card-image h-full w-full object-cover">
+        </div>
+        <div class="flex flex-1 flex-col p-6">
+          <h3 class="text-[16.5px] font-bold" style="color:var(--ink)">Data Science with AI & Automation</h3>
+          <p class="mt-2 flex-1 text-[13.5px]" style="color:var(--text-muted)">Analyze data, build models, and automate business workflows end-to-end.</p>
+        <a href="aids.html" class="mt-5 inline-flex items-center gap-1.5 text-[13.5px] font-semibold" style="color:var(--brand)">Apply Now <i data-lucide="arrow-right"></i></a>
+        </div>
+      </div>
+      <!-- Track 6: Content & Design -->
+      <div class="internship-card card-lift flex flex-col overflow-hidden rounded-3xl bg-white" style="border:1px solid var(--line)">
+        <div class="h-40 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=800&auto=format&fit=crop" alt="Designer's desktop screen with creative graphic design work" class="card-image h-full w-full object-cover">
+        </div>
+        <div class="flex flex-1 flex-col p-6">
+          <h3 class="text-[16.5px] font-bold" style="color:var(--ink)">Content Creation & Graphic Design</h3>
+          <p class="mt-2 flex-1 text-[13.5px]" style="color:var(--text-muted)">Branding, social media design, and content that grows real audiences.</p>
+          <a href="cc.html" class="mt-5 inline-flex items-center gap-1.5 text-[13.5px] font-semibold" style="color:var(--brand)">Apply Now <i data-lucide="arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU'LL GAIN SECTION (redesigned, condensed copy) -->
+<section class="py-16 bg-white">
+  <div class="container-x">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <span class="section-label"><i data-lucide="sparkles" style="width:11px;height:11px"></i> What You'll Gain</span>
+      <h2 class="mt-4 text-[26px] md:text-[30px] font-bold" style="color:var(--ink)">Real, tangible outcomes — not just a certificate</h2>
+      <p class="mt-3 text-[14.5px]" style="color:var(--text-muted)">Every internship is built around outcomes you can point to in an interview.</p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5 max-w-5xl mx-auto">
+      <div class="gain-card">
+        <div class="icon-wrap"><i data-lucide="briefcase"></i></div>
+        <h4>Real Project Experience</h4>
+        <hr class="gain-divider">
+        <p>Work on live projects that build a portfolio you can speak to in interviews. You'll ship real deliverables, not simulations.</p>
+      </div>
+      <div class="gain-card">
+        <div class="icon-wrap"><i data-lucide="graduation-cap"></i></div>
+        <h4>Industry Mentorship</h4>
+        <hr class="gain-divider">
+        <p>Get 1:1 guidance and feedback from experts who've been there. Regular check-ins keep you on track.</p>
+      </div>
+      <div class="gain-card">
+        <div class="icon-wrap"><i data-lucide="award"></i></div>
+        <h4>Certificate of Completion</h4>
+        <hr class="gain-divider">
+        <p>Earn a verified certificate and digital badge recruiters can check instantly. It's proof of real, hands-on work.</p>
+      </div>
+      <div class="gain-card">
+        <div class="icon-wrap"><i data-lucide="users"></i></div>
+        <h4>900+ Hiring Partners</h4>
+        <hr class="gain-divider">
+        <p>Get introduced to recruiters across startups, agencies, and enterprises. New openings reach you first.</p>
+      </div>
+      <div class="gain-card">
+        <div class="icon-wrap"><i data-lucide="file-text"></i></div>
+        <h4>Profile Building Support</h4>
+        <hr class="gain-divider">
+        <p>Resume, LinkedIn, and mock interviews so you walk in prepared. Your pitch stays sharp and confident.</p>
+      </div>
+      <div class="gain-card">
+        <div class="icon-wrap"><i data-lucide="rocket"></i></div>
+        <h4>Career Acceleration</h4>
+        <hr class="gain-divider">
+        <p>Priority placement support and a network that keeps growing with you. Growth continues long after you graduate.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERNSHIP PROCESS SECTION -->
+<section class="py-14" style="background:var(--surface)">
+  <div class="container-x">
+    <div class="text-center">
+      <h2 class="text-[28px] md:text-[36px] font-bold" style="color:var(--ink)">How It <span class="italic-serif" style="color:var(--brand)">Works</span></h2>
+      <p class="mx-auto mt-3 max-w-xl text-[15px]" style="color:var(--text-muted)">A simple 4-step process to get you from application to your dream internship.</p>
+    </div>
+    <div class="mt-8 grid gap-6 md:grid-cols-4">
+      <div class="text-center">
+        <span class="flex h-14 w-14 items-center justify-center rounded-full mx-auto" style="background:var(--brand);color:#fff;font-weight:800;font-size:1.2rem">1</span>
+        <h4 class="mt-3 text-[15px] font-bold" style="color:var(--ink)">Apply & Register</h4>
+        <p class="mt-1 text-[13px]" style="color:var(--text-muted)">Submit your application and choose your preferred internship track.</p>
+      </div>
+      <div class="text-center">
+        <span class="flex h-14 w-14 items-center justify-center rounded-full mx-auto" style="background:var(--brand);color:#fff;font-weight:800;font-size:1.2rem">2</span>
+        <h4 class="mt-3 text-[15px] font-bold" style="color:var(--ink)">Assessment & Onboarding</h4>
+        <p class="mt-1 text-[13px]" style="color:var(--text-muted)">Complete a skill assessment and get onboarded to your internship cohort.</p>
+      </div>
+      <div class="text-center">
+        <span class="flex h-14 w-14 items-center justify-center rounded-full mx-auto" style="background:var(--brand);color:#fff;font-weight:800;font-size:1.2rem">3</span>
+        <h4 class="mt-3 text-[15px] font-bold" style="color:var(--ink)">Work on Real Projects</h4>
+        <p class="mt-1 text-[13px]" style="color:var(--text-muted)">Get hands-on experience with live projects under expert mentorship.</p>
+      </div>
+      <div class="text-center">
+        <span class="flex h-14 w-14 items-center justify-center rounded-full mx-auto" style="background:var(--brand);color:#fff;font-weight:800;font-size:1.2rem">4</span>
+        <h4 class="mt-3 text-[15px] font-bold" style="color:var(--ink)">Get Hired or Convert</h4>
+        <p class="mt-1 text-[13px]" style="color:var(--text-muted)">Complete your internship and get hired or convert to a full-time role.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPLICATION TIMELINE SECTION -->
+<section class="py-16 bg-white">
+  <div class="container-x">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <span class="section-label"><i data-lucide="calendar-clock" style="width:11px;height:11px"></i> Timeline</span>
+      <h2 class="mt-4 text-[26px] md:text-[30px] font-bold" style="color:var(--ink)">From application to offer</h2>
+      <p class="mt-3 text-[14.5px]" style="color:var(--text-muted)">Here's roughly what the next two months could look like.</p>
+    </div>
+
+    <div class="timeline-track grid gap-8 md:grid-cols-4 max-w-5xl mx-auto">
+      <div class="timeline-stop">
+        <div class="dot">1</div>
+        <div class="date">Week 0</div>
+        <h4>Apply & get matched</h4>
+        <p>Submit your application and pick a track. You'll hear back within a few days.</p>
+      </div>
+      <div class="timeline-stop">
+        <div class="dot">2</div>
+        <div class="date">Week 1</div>
+        <h4>Onboarding</h4>
+        <p>Meet your mentor and cohort, and complete a short skills assessment.</p>
+      </div>
+      <div class="timeline-stop">
+        <div class="dot">3</div>
+        <div class="date">Weeks 2–7</div>
+        <h4>Live project work</h4>
+        <p>Ship real deliverables with regular mentor check-ins and feedback.</p>
+      </div>
+      <div class="timeline-stop">
+        <div class="dot">4</div>
+        <div class="date">Final week</div>
+        <h4>Certification & placement</h4>
+        <p>Get your certificate, polish your profile, and get introduced to hiring partners.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BY THE NUMBERS SECTION -->
+<section class="py-16" style="background:var(--surface)">
+  <div class="container-x">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <span class="section-label"><i data-lucide="bar-chart-3" style="width:11px;height:11px"></i> By The Numbers</span>
+      <h2 class="mt-4 text-[26px] md:text-[30px] font-bold" style="color:var(--ink)">The program, quantified</h2>
+      <p class="mt-3 text-[14.5px]" style="color:var(--text-muted)">A quick look at what interns typically walk away with.</p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5 max-w-5xl mx-auto">
+      <div class="stat-card">
+        <div class="icon-wrap"><i data-lucide="users"></i></div>
+        <div class="num">900+</div>
+        <div class="label">Hiring partners</div>
+      </div>
+      <div class="stat-card">
+        <div class="icon-wrap"><i data-lucide="calendar-days"></i></div>
+        <div class="num">6–8</div>
+        <div class="label">Weeks per track</div>
+      </div>
+      <div class="stat-card">
+        <div class="icon-wrap"><i data-lucide="layout-grid"></i></div>
+        <div class="num">6</div>
+        <div class="label">Internship tracks</div>
+      </div>
+      <div class="stat-card">
+        <div class="icon-wrap"><i data-lucide="award"></i></div>
+        <div class="num">100%</div>
+        <div class="label">Get a certificate on completion</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:var(--ink);color:rgba(255,255,255,.7)">
+  <div class="container-x py-10 text-center text-[13px]">
+    ©️ 2026 CareerLaunchpad · <a href="index.html" class="hover:text-white">Home</a>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+</body>
+</html>

@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>App/Web &amp; Product Development Internship — CareerLaunchpad</title>
+  <meta name="description" content="One integrated internship covering product management, web &amp; app development, and UX/UI design — how products get scoped, designed, and shipped, with real teams and industry mentorship.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brand: #c94f00;
+      --brand-hover: #b34400;
+      --brand-soft: #fbe8db;
+      --ink: #171312;
+      --ink-soft: #27211f;
+      --surface: #f8f6f4;
+      --text: #232323;
+      --text-muted: #6b6b6b;
+      --line: #e6e2de;
+    }
+    body { font-family: 'Inter', sans-serif; color: var(--text); font-size: 16px; line-height: 1.6; }
+    h1, h2, h3, h4 { font-family: 'Manrope', sans-serif; letter-spacing: -0.02em; }
+    .italic-serif { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700; }
+    .container-x { max-width: 1280px; margin-inline: auto; padding-inline: 24px; }
+    @media (min-width: 1024px) { .container-x { padding-inline: 60px; } }
+    .btn-brand { background: var(--brand); color: #fff; }
+    .btn-brand:hover { background: var(--brand-hover); }
+    .btn-outline { background: #fff; color: var(--brand); border: 1.5px solid var(--brand); }
+    .btn-outline:hover { background: var(--brand-soft); }
+    .btn-white { background: #fff; color: var(--brand); }
+    .btn-white:hover { background: var(--brand-soft); }
+    .card-lift { transition: 0.25s; }
+    .card-lift:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -20px rgba(201, 79, 0, 0.25); }
+    [data-lucide] { width: 1em; height: 1em; stroke-width: 2; }
+    .hero-gradient { background: linear-gradient(135deg, #f2650a 0%, #c94f00 45%, #a83e00 100%); position: relative; overflow: hidden; }
+    .hero-gradient::before {
+      content: "";
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 80% 20%, rgba(255,255,255,0.15), transparent 55%);
+    }
+    .hero-gradient::after {
+      content: "";
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(115deg, transparent 38%, rgba(255,255,255,0.10) 41%, rgba(255,255,255,0.10) 43%, transparent 46%),
+        linear-gradient(115deg, transparent 54%, rgba(255,255,255,0.16) 57%, rgba(255,255,255,0.16) 59%, transparent 62%),
+        linear-gradient(115deg, transparent 68%, rgba(255,255,255,0.08) 71%, rgba(255,255,255,0.08) 73%, transparent 76%);
+      mix-blend-mode: overlay;
+      pointer-events: none;
+    }
+    .hero-gradient > .container-x { position: relative; }
+    .hero-badge { border: 1.5px solid rgba(255,255,255,0.7); background: transparent; }
+    .stat-card {
+      border-radius: 1rem; padding: 1.5rem 1rem; background: white; border: 1px solid var(--line);
+      transition: 0.2s; text-align: center; aspect-ratio: 1 / 1;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+    }
+    .stat-card:hover { border-color: var(--brand); box-shadow: 0 8px 24px -8px rgba(201, 79, 0, 0.1); }
+    @media (max-width: 480px) { .stat-card { aspect-ratio: auto; min-height: 120px; padding: 1rem; } }
+    .check-item { display: flex; gap: 0.6rem; align-items: flex-start; }
+    .check-item i { color: var(--brand); flex-shrink: 0; margin-top: 2px; }
+    .section-label {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em;
+      color: var(--brand); background: var(--brand-soft); padding: 0.35rem 0.9rem; border-radius: 100px;
+    }
+    .skill-card {
+      border-radius: 1.25rem; padding: 1.5rem; background: white; border: 1px solid var(--line);
+      transition: 0.2s; display: flex; flex-direction: column; gap: 0.9rem;
+    }
+    .skill-card:hover { border-color: var(--brand); box-shadow: 0 8px 24px -8px rgba(201, 79, 0, 0.15); transform: translateY(-3px); }
+    .skill-card .icon-wrap {
+      flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+      width: 2.8rem; height: 2.8rem; border-radius: 0.75rem; background: var(--brand-soft); color: var(--brand); font-size: 1.1rem;
+    }
+    .skill-card h4 { font-size: 0.98rem; font-weight: 700; color: var(--ink); margin: 0; }
+    .skill-card p { font-size: 0.83rem; color: var(--text-muted); margin: 0; line-height: 1.55; }
+    .module-tag {
+      display: inline-flex; align-items: center; border-radius: 0.4rem; padding: 0.28rem 0.6rem;
+      font-size: 11px; font-weight: 600; background: var(--brand-soft); color: var(--brand);
+    }
+
+    /* Curriculum vertical timeline */
+    .curric-timeline { position: relative; }
+    .curric-timeline::before { content: ""; position: absolute; left: 1.5rem; top: 0.5rem; bottom: 0.5rem; width: 2px; background: var(--line); }
+    @media (min-width: 768px) { .curric-timeline::before { left: 1.75rem; } }
+    .curric-item { position: relative; display: flex; gap: 1.5rem; padding-bottom: 1.75rem; }
+    .curric-item:last-child { padding-bottom: 0; }
+    .curric-dot {
+      flex-shrink: 0; position: relative; z-index: 1;
+      width: 3rem; height: 3rem; border-radius: 999px;
+      background: var(--brand); color: #fff; font-weight: 800; font-family: 'Manrope', sans-serif;
+      display: flex; align-items: center; justify-content: center; font-size: 0.95rem;
+    }
+    @media (min-width: 768px) { .curric-dot { width: 3.5rem; height: 3.5rem; } }
+    .curric-content { flex: 1; background: white; border: 1px solid var(--line); border-radius: 1.25rem; padding: 1.35rem 1.5rem; transition: 0.2s; }
+    .curric-content:hover { border-color: var(--brand); box-shadow: 0 8px 24px -8px rgba(201, 79, 0, 0.12); }
+    .curric-week { display: inline-block; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--brand); margin-bottom: 0.35rem; }
+    .curric-content h4 { font-size: 1.02rem; font-weight: 700; color: var(--ink); margin: 0 0 0.4rem; }
+    .curric-content p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin: 0 0 0.85rem; }
+    .curric-track-flag {
+      display: inline-flex; align-items: center; gap: 0.3rem; font-size: 10.5px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.06em; color: var(--brand); margin-bottom: 0.5rem;
+    }
+
+    /* Hero product mockup */
+    .mockup-wrap { position: relative; }
+    .mockup-browser {
+      background: rgba(255,255,255,0.97); border-radius: 1.1rem; box-shadow: 0 25px 60px -20px rgba(0,0,0,0.45);
+      overflow: hidden;
+    }
+    .mockup-topbar { background: #efe9e3; display: flex; align-items: center; gap: 6px; padding: 10px 14px; }
+    .mockup-dot { width: 8px; height: 8px; border-radius: 999px; }
+    .mockup-app {
+      position: absolute; right: -18px; bottom: -22px; width: 42%;
+      background: rgba(255,255,255,0.97); border-radius: 1.4rem; box-shadow: 0 20px 45px -15px rgba(0,0,0,0.5);
+      border: 6px solid var(--ink); overflow: hidden;
+    }
+  </style>
+</head>
+<body class="bg-white">
+
+<!-- NAVBAR -->
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b" style="border-color:var(--line)">
+  <div class="container-x flex h-[72px] items-center justify-between">
+    <a href="index.html" class="flex items-center gap-2 flex-shrink-0">
+      <span class="flex h-8 w-8 items-center justify-center rounded-lg" style="background:var(--brand)">
+        <i data-lucide="graduation-cap" class="text-white"></i>
+      </span>
+      <span class="text-[18.5px] font-bold" style="color:var(--ink)">Career<span style="color:var(--brand)">Launchpad</span></span>
+    </a>
+
+    <nav class="hidden lg:flex gap-7 text-[15.5px] font-medium">
+      <a href="career-starter.html">Career Starter</a>
+      <a href="junior-career.html">Junior Career</a>
+      <a href="pay-after-placement.html">Pay After Placement</a>
+      <a href="internships.html" style="color:var(--brand)">Internships</a>
+      <a href="experienced.html">Experienced</a>
+    </nav>
+
+    <a href="schedule-call.html" class="btn-brand hidden lg:inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-[14.5px] font-semibold flex-shrink-0">
+      <i data-lucide="phone"></i> Schedule Call
+    </a>
+
+    <button onclick="document.getElementById('mnav').classList.toggle('hidden')" class="lg:hidden p-2">
+      <i data-lucide="menu"></i>
+    </button>
+  </div>
+  <div id="mnav" class="hidden lg:hidden border-t" style="border-color:var(--line)">
+    <div class="container-x flex flex-col gap-1 py-4 text-[16.5px]">
+      <a href="career-starter.html" class="px-3 py-2.5">Career Starter</a>
+      <a href="junior-career.html" class="px-3 py-2.5">Junior Career</a>
+      <a href="pay-after-placement.html" class="px-3 py-2.5">Pay After Placement</a>
+      <a href="internships.html" class="px-3 py-2.5">Internships</a>
+      <a href="experienced.html" class="px-3 py-2.5">Experienced</a>
+      <a href="schedule-call.html" class="btn-brand rounded-full px-4 py-2.5 text-[14.5px] font-semibold text-center mt-2">Schedule Call</a>
+    </div>
+  </div>
+</header>
+
+<!-- BREADCRUMB -->
+<div class="bg-white py-4">
+  <div class="container-x flex items-center gap-2 text-[14.5px]" style="color:var(--text-muted)">
+    <a href="internships.html" class="hover:underline">Internships</a>
+    <i data-lucide="chevron-right" class="text-[13.5px]"></i>
+    <span style="color:var(--ink)">App/Web &amp; Product Development</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="relative overflow-hidden hero-gradient">
+  <div class="container-x relative py-16 md:py-24">
+    <div class="flex flex-col md:flex-row md:items-center gap-10 md:gap-12">
+      <div class="flex-1 md:max-w-xl">
+        <span class="hero-badge inline-flex rounded-full px-5 py-2 text-[11.5px] font-bold uppercase tracking-[0.14em] text-white">Product Track · Internship</span>
+        <h1 class="mt-7 text-[32px] md:text-[44px] font-extrabold leading-[1.12] text-white">
+          App/Web <span class="italic-serif">&amp;</span> Product Development
+        </h1>
+        <p class="mt-6 text-[16px] leading-relaxed text-white/90">
+          One integrated internship covering how products get built — rotate through real product management, web &amp; app development, and design teams in a single program.
+        </p>
+        <div class="mt-8 flex flex-wrap items-center gap-3">
+          <a href="schedule-call.html" class="inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-[14.5px] font-semibold" style="background:#fff;color:var(--brand)">
+            <i data-lucide="phone"></i> Apply Now — Schedule a Call
+          </a>
+          <span class="inline-flex items-center gap-2 rounded-full border-2 border-white/50 px-6 py-3.5 text-[14.5px] font-semibold text-white">
+            <i data-lucide="clock"></i> 12-week program &nbsp;·&nbsp; <i data-lucide="laptop"></i> Remote / Hybrid
+          </span>
+        </div>
+      </div>
+      <div class="flex-shrink-0 w-full md:w-[420px] md:ml-6 lg:ml-10">
+        <div class="mockup-wrap pb-6 pr-3">
+          <div class="mockup-browser">
+            <div class="mockup-topbar">
+              <span class="mockup-dot" style="background:#e5645a"></span>
+              <span class="mockup-dot" style="background:#e8b64a"></span>
+              <span class="mockup-dot" style="background:#5cb96f"></span>
+              <span class="ml-3 flex-1 rounded-full h-5" style="background:#fff"></span>
+            </div>
+            <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+              <rect x="0" y="0" width="400" height="300" fill="#ffffff"/>
+              <rect x="0" y="0" width="88" height="300" fill="#faf4ee"/>
+              <rect x="20" y="24" width="48" height="10" rx="3" fill="var(--brand)" opacity="0.85"/>
+              <rect x="20" y="54" width="48" height="7" rx="3" fill="#d8cfc6"/>
+              <rect x="20" y="70" width="48" height="7" rx="3" fill="#d8cfc6"/>
+              <rect x="20" y="86" width="48" height="7" rx="3" fill="#d8cfc6"/>
+              <rect x="20" y="102" width="48" height="7" rx="3" fill="#d8cfc6"/>
+              <rect x="112" y="24" width="180" height="14" rx="4" fill="#231f1c"/>
+              <rect x="112" y="48" width="120" height="8" rx="3" fill="#c7bdb2"/>
+              <rect x="332" y="26" width="52" height="24" rx="12" fill="var(--brand)"/>
+              <rect x="112" y="78" width="120" height="80" rx="10" fill="#fbe8db"/>
+              <rect x="128" y="94" width="88" height="8" rx="3" fill="var(--brand)" opacity="0.8"/>
+              <rect x="128" y="110" width="60" height="6" rx="3" fill="#e5b892"/>
+              <rect x="128" y="132" width="70" height="16" rx="8" fill="var(--brand)"/>
+              <rect x="248" y="78" width="136" height="80" rx="10" fill="#f2ede7"/>
+              <polyline points="260,140 284,110 306,124 330,96 356,116 372,90" fill="none" stroke="var(--brand)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="112" y="176" width="60" height="60" rx="10" fill="#f2ede7"/>
+              <rect x="182" y="176" width="60" height="60" rx="10" fill="#f2ede7"/>
+              <rect x="252" y="176" width="132" height="60" rx="10" fill="#231f1c"/>
+              <rect x="266" y="192" width="60" height="8" rx="3" fill="#ffffff"/>
+              <rect x="266" y="208" width="90" height="6" rx="3" fill="#8b8378"/>
+            </svg>
+          </div>
+          <div class="mockup-app">
+            <svg viewBox="0 0 140 220" xmlns="http://www.w3.org/2000/svg">
+              <rect x="0" y="0" width="140" height="220" fill="#ffffff"/>
+              <rect x="0" y="0" width="140" height="34" fill="var(--brand)"/>
+              <rect x="16" y="12" width="60" height="10" rx="3" fill="#ffffff"/>
+              <rect x="14" y="50" width="112" height="46" rx="8" fill="#fbe8db"/>
+              <rect x="26" y="62" width="60" height="7" rx="3" fill="var(--brand)"/>
+              <rect x="26" y="76" width="88" height="6" rx="3" fill="#e5b892"/>
+              <rect x="14" y="106" width="52" height="52" rx="8" fill="#f2ede7"/>
+              <rect x="74" y="106" width="52" height="52" rx="8" fill="#f2ede7"/>
+              <rect x="14" y="168" width="112" height="16" rx="8" fill="#231f1c"/>
+              <circle cx="70" cy="204" r="10" fill="var(--brand)"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK FACTS -->
+<section class="py-8 bg-white">
+  <div class="container-x">
+    <div class="grid gap-3 md:grid-cols-4">
+      <div class="flex items-center gap-3 rounded-2xl p-4" style="background:var(--surface);border:1px solid var(--line)">
+        <span class="flex h-10 w-10 items-center justify-center rounded-xl" style="background:var(--brand-soft);color:var(--brand)"><i data-lucide="calendar"></i></span>
+        <div>
+          <p class="text-[13.5px]" style="color:var(--text-muted)">Duration</p>
+          <p class="text-[15px] font-semibold" style="color:var(--ink)">12 Weeks · 3 Tracks</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3 rounded-2xl p-4" style="background:var(--surface);border:1px solid var(--line)">
+        <span class="flex h-10 w-10 items-center justify-center rounded-xl" style="background:var(--brand-soft);color:var(--brand)"><i data-lucide="graduation-cap"></i></span>
+        <div>
+          <p class="text-[13.5px]" style="color:var(--text-muted)">Mentorship</p>
+          <p class="text-[15px] font-semibold" style="color:var(--ink)">1:1 Expert Guidance</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3 rounded-2xl p-4" style="background:var(--surface);border:1px solid var(--line)">
+        <span class="flex h-10 w-10 items-center justify-center rounded-xl" style="background:var(--brand-soft);color:var(--brand)"><i data-lucide="award"></i></span>
+        <div>
+          <p class="text-[13.5px]" style="color:var(--text-muted)">Outcome</p>
+          <p class="text-[15px] font-semibold" style="color:var(--ink)">Certificate + Portfolio</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3 rounded-2xl p-4" style="background:var(--surface);border:1px solid var(--line)">
+        <span class="flex h-10 w-10 items-center justify-center rounded-xl" style="background:var(--brand-soft);color:var(--brand)"><i data-lucide="users"></i></span>
+        <div>
+          <p class="text-[13.5px]" style="color:var(--text-muted)">Hiring Partners</p>
+          <p class="text-[15px] font-semibold" style="color:var(--ink)">900+ Companies</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAM OVERVIEW -->
+<section class="py-16" style="background:var(--surface)">
+  <div class="container-x">
+    <div class="text-center max-w-2xl mx-auto">
+      <span class="section-label"><i data-lucide="book-open" style="width:11px;height:11px"></i> Program Overview</span>
+      <h2 class="mt-4 text-[29px] md:text-[35px] font-bold" style="color:var(--ink)">What you'll actually <span class="italic-serif" style="color:var(--brand)">be doing</span></h2>
+    </div>
+
+    <div class="mt-10 grid gap-16 lg:grid-cols-5 max-w-5xl mx-auto items-stretch">
+      <div class="lg:col-span-3 flex flex-col justify-center">
+        <p class="text-[16px] leading-relaxed" style="color:var(--text-muted)">
+          This internship rotates you through three connected product functions — product management, web &amp; app development, and UX/UI design — working alongside the people who take an idea from a rough sketch to a shipped feature. You'll see how a feature gets scoped, how it gets designed and prototyped, and how it gets built and shipped into a real product.
+        </p>
+        <p class="mt-4 text-[16px] leading-relaxed" style="color:var(--text-muted)">
+          By the end of the program, you'll have hands-on experience across the full product lifecycle, a portfolio of real deliverables from all three functions, and a verified certificate to show for it.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-2">
+          <span class="module-tag">Full Product Lifecycle</span>
+          <span class="module-tag">Real Deliverables</span>
+          <span class="module-tag">Mentor Feedback</span>
+        </div>
+      </div>
+
+      <div class="lg:col-span-2 rounded-3xl p-7 bg-white" style="border:1px solid var(--line)">
+        <h4 class="text-[15px] font-bold" style="color:var(--ink)">Day-to-day, you'll:</h4>
+        <div class="mt-4 flex flex-col gap-3.5">
+          <div class="check-item">
+            <i data-lucide="check-circle-2"></i>
+            <p class="text-[14.5px]" style="color:var(--text-muted)">Research and scope real feature requirements with product managers.</p>
+          </div>
+          <div class="check-item">
+            <i data-lucide="check-circle-2"></i>
+            <p class="text-[14.5px]" style="color:var(--text-muted)">Sit in on sprint planning, design reviews, and standups.</p>
+          </div>
+          <div class="check-item">
+            <i data-lucide="check-circle-2"></i>
+            <p class="text-[14.5px]" style="color:var(--text-muted)">Write code, build UI, and ship features into a real codebase.</p>
+          </div>
+          <div class="check-item">
+            <i data-lucide="check-circle-2"></i>
+            <p class="text-[14.5px]" style="color:var(--text-muted)">Get weekly 1:1 feedback from mentors across all three tracks.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS YOU'LL BUILD (tabbed by track) -->
+<section class="py-14 bg-white">
+  <div class="container-x">
+    <div class="text-center max-w-2xl mx-auto mb-8">
+      <span class="section-label"><i data-lucide="graduation-cap" style="width:11px;height:11px"></i> Skills You'll Build</span>
+      <h2 class="mt-4 text-[29px] md:text-[35px] font-bold" style="color:var(--ink)">Job-ready capabilities, across all three tracks</h2>
+      <p class="mt-3 text-[16px]" style="color:var(--text-muted)">Every skill maps to a real task you'll perform on the job, from day one.</p>
+    </div>
+
+    <div class="max-w-5xl mx-auto flex flex-col gap-10">
+      <div>
+        <h3 class="text-[13px] font-bold uppercase tracking-[0.1em] mb-4" style="color:var(--brand)">Product Management</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div class="skill-card">
+            <div class="icon-wrap"><i data-lucide="search"></i></div>
+            <h4>Product Discovery &amp; Research</h4>
+            <p>Talk to users and translate real needs into clear requirements.</p>
+          </div>
+          <div class="skill-card">
+            <div class="icon-wrap"><i data-lucide="list-checks"></i></div>
+            <h4>Specs &amp; User Stories</h4>
+            <p>Write specs and user stories engineering can build from directly.</p>
+          </div>
+          <div class="skill-card">
+            <div class="icon-wrap"><i data-lucide="kanban-square"></i></div>
+            <h4>Roadmapping &amp; Prioritization</h4>
+            <p>Sequence features against real business and user goals.</p>
+          </div>
+          <div class="skill-card">
+            <div class="icon-wrap"><i data-lucide="bar-chart-3"></i></div>
+            <h4>Product Analytics</h4>
+            <p>Read usage data and metrics to validate what to build next.</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="text-[13px] font-bold uppercase tracking-[0.1em] mb-4" style="color:var(--brand)">Web &amp; App Development</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div class="skill-card">
+            <div class="icon-wrap"><i data-lucide="code"></i></div>
+            <h4>Frontend Development</h4>
+            <p>Build responsive interfaces with real components and frameworks.</p>
+          </div>
+          <div class="skill-card">
+            <div class="icon-wrap"><i data-lucide="server"></i></div>
+            <h4>Backend &amp; APIs</h4>
+            <p>Build and connect the APIs and data models that power features.</p>
+          </div>
+          <div class="skill-card">
+            <div class="icon-wrap"><i data-lucide="git-branch"></i></div>
+            <h4>Version Control &amp; Collaboration</h4>
+            <p>Ship code through real Git workflows and code review.</p>
+          </div>
+          <div class="skill-card">
+            <div class="icon-wrap"><i data-lucide="bug"></i></div>
+            <h4>Testing &amp; Debugging</h4>
+            <p>Write tests and track down bugs inside a live codebase.</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="text-[13px] font-bold uppercase tracking-[0.1em] mb-4" style="color:var(--brand)">UX/UI Design</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div class="skill-card">
+            <div class="icon-wrap"><i data-lucide="pen-tool"></i></div>
+            <h4>Wireframing &amp; Prototyping</h4>
+            <p>Sketch flows and build clickable prototypes users can test.</p>
+          </div>
+          <div class="skill-card">
+            <div class="icon-wrap"><i data-lucide="layout"></i></div>
+            <h4>UI Design Systems</h4>
+            <p>Design components inside a consistent, reusable design system.</p>
+          </div>
+          <div class="skill-card">
+            <div class="icon-wrap"><i data-lucide="eye"></i></div>
+            <h4>Usability Testing</h4>
+            <p>Run sessions with real users and turn findings into changes.</p>
+          </div>
+          <div class="skill-card">
+            <div class="icon-wrap"><i data-lucide="palette"></i></div>
+            <h4>Visual &amp; Interaction Design</h4>
+            <p>Craft the look, feel, and micro-interactions of a real product.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CURRICULUM -->
+<section class="py-16" style="background:var(--surface)">
+  <div class="container-x">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <span class="section-label"><i data-lucide="clipboard-list" style="width:11px;height:11px"></i> Curriculum</span>
+      <h2 class="mt-4 text-[31px] md:text-[39px] font-bold" style="color:var(--ink)">A six-module path, across three tracks</h2>
+      <p class="mt-3 text-[16.5px]" style="color:var(--text-muted)">Each module builds on the last — from product fundamentals, through product management, development, and design, to a real, mentor-reviewed capstone.</p>
+    </div>
+
+    <div class="curric-timeline max-w-3xl mx-auto">
+      <div class="curric-item">
+        <span class="curric-dot">01</span>
+        <div class="curric-content">
+          <span class="curric-week">Weeks 1–2</span>
+          <span class="curric-track-flag"><i data-lucide="compass" style="width:11px;height:11px"></i> Foundations</span>
+          <h4>Product &amp; Tech Fundamentals</h4>
+          <p>How product management, engineering, and design work together to ship software.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="module-tag">Dev Environment</span>
+            <span class="module-tag">Product Lifecycle</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="curric-item">
+        <span class="curric-dot">02</span>
+        <div class="curric-content">
+          <span class="curric-week">Weeks 3–5</span>
+          <span class="curric-track-flag"><i data-lucide="clipboard-list" style="width:11px;height:11px"></i> Product Management</span>
+          <h4>Discovery, Specs &amp; Roadmapping</h4>
+          <p>Researching users, writing specs, and prioritizing a real feature roadmap.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="module-tag">User Research</span>
+            <span class="module-tag">Roadmaps</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="curric-item">
+        <span class="curric-dot">03</span>
+        <div class="curric-content">
+          <span class="curric-week">Weeks 6–8</span>
+          <span class="curric-track-flag"><i data-lucide="code" style="width:11px;height:11px"></i> Web &amp; App Development</span>
+          <h4>Building the Product</h4>
+          <p>Building real frontend and backend features inside a live codebase.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="module-tag">Frontend</span>
+            <span class="module-tag">Backend</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="curric-item">
+        <span class="curric-dot">04</span>
+        <div class="curric-content">
+          <span class="curric-week">Weeks 9–10</span>
+          <span class="curric-track-flag"><i data-lucide="pen-tool" style="width:11px;height:11px"></i> UX/UI Design</span>
+          <h4>Interface &amp; Experience Design</h4>
+          <p>Wireframing, prototyping, and testing the interfaces you helped build.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="module-tag">Prototyping</span>
+            <span class="module-tag">Usability Testing</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="curric-item">
+        <span class="curric-dot">05</span>
+        <div class="curric-content">
+          <span class="curric-week">Week 11</span>
+          <span class="curric-track-flag"><i data-lucide="bar-chart-3" style="width:11px;height:11px"></i> Cross-Functional</span>
+          <h4>QA, Launch &amp; Metrics</h4>
+          <p>Testing, shipping, and measuring a feature's real impact after launch.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="module-tag">QA</span>
+            <span class="module-tag">Launch</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="curric-item">
+        <span class="curric-dot">06</span>
+        <div class="curric-content">
+          <span class="curric-week">Week 12</span>
+          <span class="curric-track-flag"><i data-lucide="flag" style="width:11px;height:11px"></i> Capstone</span>
+          <h4>Capstone Project</h4>
+          <p>Ship a real product feature end-to-end, from spec to shipped code, with mentor review, ready for your portfolio.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="module-tag">Capstone</span>
+            <span class="module-tag">Portfolio</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="py-16 bg-white">
+  <div class="container-x">
+    <div class="rounded-3xl hero-gradient px-8 py-12 text-center md:px-16">
+      <h2 class="text-[29px] md:text-[37px] font-bold text-white">Ready to start your product career?</h2>
+      <p class="mx-auto mt-3 max-w-xl text-[16px] text-white/85">Book a quick call with our career expert and get matched to the next App/Web &amp; Product Development internship cohort.</p>
+      <a href="schedule-call.html" class="btn-white mt-6 inline-flex items-center gap-2 rounded-full px-6 py-3 text-[15px] font-semibold">
+        <i data-lucide="phone"></i> Schedule a Call
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:var(--ink);color:rgba(255,255,255,.7)">
+  <div class="container-x py-10 text-center text-[14.5px]">
+    ©️ 2026 CareerLaunchpad · <a href="index.html" class="hover:text-white">Home</a>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+</body>
+</html>

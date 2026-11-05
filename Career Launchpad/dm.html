@@ -1,0 +1,706 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Digital Marketing & Growth — CareerLaunchpad</title>
+  <meta name="description" content="Digital Marketing & Growth — Pay After Placement program with zero upfront fees.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&family=Instrument+Serif&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brand: #c94f00;
+      --brand-hover: #b34400;
+      --brand-soft: #fbe8db;
+      --ink: #171312;
+      --ink-soft: #27211f;
+      --surface: #f8f6f4;
+      --text: #232323;
+      --text-muted: #6b6b6b;
+      --line: #e6e2de;
+    }
+    body { font-family: 'Inter', sans-serif; color: var(--text); }
+    h1, h2, h3, h4 { font-family: 'Manrope', sans-serif; letter-spacing: -0.02em; }
+    .italic-serif { font-family: 'Instrument Serif', serif; font-style: italic; }
+    .container-x { max-width: 1280px; margin-inline: auto; padding-inline: 24px; }
+    @media (min-width: 1024px) { .container-x { padding-inline: 60px; } }
+    .btn-brand { background: var(--brand); color: #fff; }
+    .btn-brand:hover { background: var(--brand-hover); }
+    .btn-outline-brand { background: transparent; color: var(--brand); border: 2px solid var(--brand); }
+    .btn-outline-brand:hover { background: var(--brand); color: #fff; }
+    .card-lift { transition: 0.25s; }
+    .card-lift:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -20px rgba(201, 79, 0, 0.25); }
+    [data-lucide] { width: 1em; height: 1em; stroke-width: 2; }
+
+    /* ----- HERO (matched to Pay After Placement page) ----- */
+    .hero-gradient { background: linear-gradient(135deg, #f2650a 0%, #c94f00 45%, #a83e00 100%); position: relative; overflow: hidden; }
+    .hero-gradient::before {
+      content: "";
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 80% 20%, rgba(255,255,255,0.15), transparent 55%);
+    }
+    .hero-gradient::after {
+      content: "";
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(115deg, transparent 38%, rgba(255,255,255,0.10) 41%, rgba(255,255,255,0.10) 43%, transparent 46%),
+        linear-gradient(115deg, transparent 54%, rgba(255,255,255,0.16) 57%, rgba(255,255,255,0.16) 59%, transparent 62%),
+        linear-gradient(115deg, transparent 68%, rgba(255,255,255,0.08) 71%, rgba(255,255,255,0.08) 73%, transparent 76%);
+      mix-blend-mode: overlay;
+      pointer-events: none;
+    }
+    .hero-badge {
+      border: 1.5px solid rgba(255,255,255,0.7);
+      background: transparent;
+    }
+
+    .section-label {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em;
+      color: var(--brand); background: var(--brand-soft); padding: 0.35rem 0.9rem; border-radius: 100px;
+    }
+
+    /* Pricing — card with colored header block (matches reference design) */
+    .pricing-card {
+      border-radius: 1.25rem;
+      background: white;
+      border: 1px solid var(--line);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      transition: 0.3s;
+    }
+    .pricing-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 48px -20px rgba(23, 19, 18, 0.2);
+    }
+    .pricing-card.popular {
+      border: 2px solid var(--brand);
+      box-shadow: 0 20px 50px -20px rgba(201, 79, 0, 0.35);
+    }
+    .pricing-card.popular:hover { transform: translateY(-6px); box-shadow: 0 24px 55px -18px rgba(201, 79, 0, 0.4); }
+
+    .pricing-head {
+      position: relative;
+      background: var(--ink);
+      padding: 1.75rem 1.75rem 1.5rem;
+      overflow: hidden;
+    }
+    .pricing-head::after {
+      content: "";
+      position: absolute; top: -30px; right: -30px;
+      width: 130px; height: 130px; border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+    }
+    .pricing-head.popular-head {
+      background: linear-gradient(135deg, #f2650a 0%, #c94f00 55%, #a83e00 100%);
+    }
+    .pricing-head.popular-head::after { background: rgba(255,255,255,0.12); }
+    .plan-pill {
+      display: inline-flex; align-items: center;
+      background: rgba(255,255,255,0.14);
+      color: #fff;
+      font-size: 0.72rem; font-weight: 700;
+      padding: 0.35rem 0.85rem;
+      border-radius: 100px;
+      position: relative; z-index: 1;
+    }
+    .most-popular-badge {
+      position: absolute; top: 1.4rem; right: 1.5rem; z-index: 1;
+      background: #fff; color: var(--brand);
+      font-size: 0.68rem; font-weight: 800; letter-spacing: 0.04em;
+      padding: 0.4rem 0.9rem; border-radius: 100px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+    .pricing-head .plan-name {
+      position: relative; z-index: 1;
+      font-size: 1.4rem; font-weight: 800; color: #fff; margin-top: 0.85rem;
+    }
+    .pricing-head .plan-tagline {
+      position: relative; z-index: 1;
+      font-size: 0.9rem; color: rgba(255,255,255,0.75); margin-top: 0.4rem; font-weight: 500;
+    }
+    .pricing-head .price-row {
+      position: relative; z-index: 1;
+      margin-top: 1.1rem; display: flex; align-items: baseline; gap: 0.4rem;
+    }
+    .pricing-head .price { font-size: 1.7rem; font-weight: 800; color: #fff; }
+    .pricing-head .price-sub { font-size: 0.78rem; color: rgba(255,255,255,0.7); font-weight: 500; }
+
+    .pricing-body {
+      padding: 1.75rem 1.75rem 0.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .pricing-body .lead-in {
+      font-size: 0.92rem; color: var(--text); margin-bottom: 1.1rem; line-height: 1.5;
+    }
+    .pricing-body .lead-in b { color: var(--brand); font-weight: 700; }
+    .pricing-card ul { flex: 1; margin-bottom: 0.5rem; display: flex; flex-direction: column; gap: 0.85rem; }
+    .pricing-card ul li {
+      display: flex; gap: 0.65rem; align-items: flex-start; font-size: 0.9rem;
+      color: var(--text); line-height: 1.45;
+    }
+    .pricing-card ul li .check-dot {
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      width: 1.2rem; height: 1.2rem; border-radius: 50%; margin-top: 0.05rem;
+      color: var(--brand);
+    }
+    .pricing-card ul li .check-dot i { width: 1.15rem; height: 1.15rem; }
+
+    .pricing-card .cta-wrap { padding: 1.5rem 1.75rem 1.75rem; }
+    .pricing-card button {
+      font-size: 15px;
+      padding-block: 0.95rem;
+      transition: 0.2s;
+      border-radius: 0.85rem;
+      font-weight: 700;
+    }
+    .pricing-card button:hover { transform: translateY(-2px); box-shadow: 0 10px 24px -8px rgba(23,19,18,0.35); }
+    .pricing-card.popular button:hover { box-shadow: 0 10px 24px -8px rgba(201,79,0,0.45); }
+    .pricing-note {
+      text-align: center; font-size: 0.85rem; color: var(--text-muted); margin-top: 2.25rem;
+    }
+
+    #program-breadcrumb i { color: var(--brand); }
+    #program-breadcrumb a:hover { color: var(--brand); }
+
+    /* Square feature cards */
+    .square-card {
+      border-radius: 1.25rem; padding: 1.6rem 1.5rem; background: white; border: 1px solid var(--line);
+      transition: 0.2s; display: flex; flex-direction: column; justify-content: flex-start;
+      align-items: flex-start; width: 100%; height: 100%;
+    }
+    .square-card:hover { border-color: var(--brand); box-shadow: 0 8px 24px -8px rgba(201, 79, 0, 0.1); transform: translateY(-3px); }
+    .square-card .icon-wrap {
+      flex-shrink: 0; margin-bottom: 0.9rem; display: flex; align-items: center; justify-content: center;
+      width: 3.2rem; height: 3.2rem; border-radius: 0.8rem; background: var(--brand-soft); color: var(--brand); font-size: 1.25rem;
+    }
+    .square-card h4 { font-size: 1.05rem; font-weight: 700; color: var(--ink); margin: 0 0 0.45rem; line-height: 1.35; }
+    .square-card p { font-size: 0.9rem; color: var(--text-muted); margin: 0; line-height: 1.6; }
+
+    /* About the program */
+    .about-heading { font-size: 34px; }
+    @media (min-width: 768px) { .about-heading { font-size: 44px; } }
+    .about-copy { font-size: 16.5px; line-height: 1.75; }
+    .about-stat {
+      display: flex; flex-direction: column; gap: 0.2rem; padding: 1.1rem 1.3rem;
+      border-radius: 1rem; background: white; border: 1px solid var(--line);
+    }
+    .about-stat .num { font-size: 1.6rem; font-weight: 800; color: var(--brand); font-family: 'Manrope', sans-serif; }
+    .about-stat .label { font-size: 0.78rem; color: var(--text-muted); font-weight: 600; }
+    .role-pill {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      border-radius: 100px; padding: 0.65rem 1.1rem; font-size: 13.5px; font-weight: 600;
+      background: white; border: 1px solid var(--line); color: var(--ink);
+      transition: 0.2s;
+    }
+    .role-pill:hover { border-color: var(--brand); color: var(--brand); background: var(--brand-soft); }
+    .role-pill i { color: var(--brand); width: 14px; height: 14px; flex-shrink: 0; }
+
+    /* Companies that visited grid — separate widget cards */
+    .company-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+    }
+    @media (max-width: 900px) {
+      .company-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .company-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    .company-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.9rem;
+      text-align: center;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 1.1rem;
+      padding: 1.75rem 1.25rem;
+      transition: 0.2s;
+    }
+    .company-card:hover {
+      border-color: var(--brand);
+      box-shadow: 0 12px 28px -12px rgba(201, 79, 0, 0.18);
+      transform: translateY(-4px);
+    }
+    .company-card img {
+      height: 52px;
+      width: auto;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    .company-card img.company-card-img-lg {
+      height: 74px;
+    }
+    .company-card-name {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--ink-soft);
+    }
+  </style>
+</head>
+<body class="bg-white">
+
+<!-- NAVBAR -->
+<header id="nav" class="sticky top-0 z-50 w-full bg-white/95 backdrop-blur border-b" style="border-color:var(--line)">
+  <div class="w-full flex h-[72px] items-center justify-between pl-0 pr-4 md:pr-8 lg:pr-16">
+    <a href="index.html" class="flex items-center gap-2 pl-8 md:pl-14 lg:pl-24">
+      <span class="flex h-8 w-8 items-center justify-center rounded-lg" style="background:var(--brand)"><i data-lucide="graduation-cap" class="text-white text-[20px]"></i></span>
+      <span class="text-[19px] font-bold" style="color:var(--ink)">Career<span style="color:var(--brand)">Launchpad</span></span>
+    </a>
+    <div class="hidden lg:flex items-center gap-8 ml-auto">
+      <nav class="flex items-center gap-7 text-[15.5px] font-medium" style="color:var(--text)">
+        <a href="career-starter.html" class="hover:text-[color:var(--brand)]">Career Starter</a>
+        <a href="junior-career.html" class="hover:text-[color:var(--brand)]">Junior Career</a>
+        <a href="pay-after-placement.html" class="hover:text-[color:var(--brand)]" style="color:var(--brand)">Pay After Placement</a>
+        <a href="internships.html" class="hover:text-[color:var(--brand)]">Internships</a>
+        <a href="experienced.html" class="hover:text-[color:var(--brand)]">Experienced</a>
+      </nav>
+      <a href="schedule-call.html" class="btn-brand inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[14.5px] font-semibold"><i data-lucide="phone" class="text-[17px]"></i> Schedule Call</a>
+    </div>
+    <button onclick="document.getElementById('mnav').classList.toggle('hidden')" class="lg:hidden p-2 rounded-lg ml-auto" style="color:var(--ink)"><i data-lucide="menu"></i></button>
+  </div>
+  <div id="mnav" class="hidden lg:hidden border-t" style="border-color:var(--line)">
+    <div class="container-x flex flex-col gap-1 py-4 text-[15px] font-medium" style="color:var(--text)">
+      <a href="career-starter.html" class="px-3 py-2.5">Career Starter</a>
+      <a href="junior-career.html" class="px-3 py-2.5">Junior Career</a>
+      <a href="pay-after-placement.html" class="px-3 py-2.5">Pay After Placement</a>
+      <a href="internships.html" class="px-3 py-2.5">Internships</a>
+      <a href="experienced.html" class="px-3 py-2.5">Experienced</a>
+      <a href="schedule-call.html" class="btn-brand mt-2 flex items-center justify-center gap-2 rounded-full px-4 py-3 text-[14px]"><i data-lucide="phone"></i> Schedule Call</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO (matched to Pay After Placement / Business Development hero styling) -->
+<section class="relative overflow-hidden hero-gradient">
+  <div class="container-x relative py-14 md:py-20">
+    <div id="program-breadcrumb" class="flex items-center justify-center gap-1.5 mb-6 text-[12px] font-semibold uppercase tracking-[0.08em] text-white/70">
+      <i data-lucide="layout-grid" style="width:13px;height:13px;color:#fff"></i>
+      <a href="pay-after-placement.html" class="text-white/70 hover:!text-white">Pay After Placement</a>
+      <i data-lucide="chevron-right" style="width:13px;height:13px;color:#fff"></i>
+      <span class="text-white">Digital Marketing</span>
+    </div>
+
+    <div class="max-w-3xl mx-auto text-center flex flex-col items-center">
+      <span class="hero-badge inline-flex rounded-full px-5 py-2 text-[11.5px] font-bold uppercase tracking-[0.14em] text-white">Digital Marketing</span>
+      <h1 class="mx-auto mt-7 max-w-3xl text-[34px] md:text-[52px] font-extrabold leading-[1.12] text-white">
+        Land a marketing career, without paying a rupee upfront
+      </h1>
+      <p class="mx-auto mt-6 max-w-2xl text-[16px] leading-relaxed text-white/90">
+        Learn how to plan campaigns, run paid ads, and turn traffic into leads — with real budgets and real dashboards. You only pay once you're placed with one of our hiring partners.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="#pricing" class="inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-[14.5px] font-semibold" style="background:#fff;color:var(--brand)">
+          <i data-lucide="rocket"></i> Start Your Journey
+        </a>
+        <a href="schedule-call.html" class="inline-flex items-center gap-2 rounded-full border-2 border-white/50 px-6 py-3.5 text-[14.5px] font-semibold text-white hover:bg-white/10">
+          <i data-lucide="phone"></i> Talk to Us First
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT THE PROGRAM -->
+<section class="py-16 bg-white">
+  <div class="container-x">
+    <div class="max-w-5xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-10 md:gap-20 items-start">
+        <div>
+          <span class="section-label"><i data-lucide="book-open" style="width:11px;height:11px"></i> About the Program</span>
+          <h2 class="about-heading mt-4 font-bold leading-tight" style="color:var(--ink)">
+            Built for people who grow brands, <span class="italic-serif" style="color:var(--brand)">not just post content</span>
+          </h2>
+          <p class="about-copy mt-5" style="color:var(--text-muted)">
+            You'll learn how to plan a marketing funnel, run SEO and paid campaigns, write copy that converts, and read analytics to know what's actually working. By graduation, you're ready to walk into a Digital Marketing Executive or Performance Marketing role and add value from week one.
+          </p>
+          <div class="mt-7 grid grid-cols-3 gap-3">
+            <div class="about-stat">
+              <span class="num">6</span>
+              <span class="label">Week Program</span>
+            </div>
+            <div class="about-stat">
+              <span class="num">8</span>
+              <span class="label">Marketing Skills</span>
+            </div>
+            <div class="about-stat">
+              <span class="num">0</span>
+              <span class="label">Upfront Fee*</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-[12px] font-semibold uppercase tracking-[0.08em]" style="color:var(--ink)">Roles You Can Target</h4>
+          <div class="mt-4 flex flex-col gap-4">
+            <span class="role-pill"><i data-lucide="megaphone"></i> Digital Marketing Executive</span>
+            <span class="role-pill"><i data-lucide="search"></i> SEO Analyst</span>
+            <span class="role-pill"><i data-lucide="mouse-pointer-click"></i> Performance Marketing Specialist</span>
+            <span class="role-pill"><i data-lucide="share-2"></i> Social Media Manager</span>
+            <span class="role-pill"><i data-lucide="pen-tool"></i> Content Marketing Associate</span>
+            <span class="role-pill"><i data-lucide="zap"></i> PPC Specialist</span>
+            <span class="role-pill"><i data-lucide="mail"></i> Email Marketing Specialist</span>
+            <span class="role-pill"><i data-lucide="trending-up"></i> Growth Marketing Manager</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPANIES THAT VISITED US FOR THIS ROLE -->
+<section class="py-16" style="background:var(--surface)">
+  <div class="container-x">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <span class="section-label"><i data-lucide="building-2" style="width:11px;height:11px"></i> Hiring Partners</span>
+      <h2 class="mt-4 text-[26px] md:text-[30px] font-bold" style="color:var(--ink)">Companies that visited us for this role</h2>
+      <p class="mt-3 text-[14.5px]" style="color:var(--text-muted)">A look at recruiters who've hired Digital Marketing talent from our placement network.</p>
+    </div>
+
+    <div class="company-grid max-w-5xl mx-auto">
+      <div class="company-card">
+        <img src="netflix.png" alt="Netflix" onerror="this.style.display='none'">
+        <span class="company-card-name">Netflix</span>
+      </div>
+      <div class="company-card">
+        <img src="amazon.png" alt="Amazon" onerror="this.style.display='none'">
+        <span class="company-card-name">Amazon</span>
+      </div>
+      <div class="company-card">
+        <img src="insta.jpg" alt="Instagram" onerror="this.style.display='none'">
+        <span class="company-card-name">Instagram</span>
+      </div>
+      <div class="company-card">
+        <img src="facebook.jpg" alt="Facebook" onerror="this.style.display='none'">
+        <span class="company-card-name">Facebook</span>
+      </div>
+      <div class="company-card">
+        <img src="nividia.jpg" alt="NVIDIA" onerror="this.style.display='none'">
+        <span class="company-card-name">NVIDIA</span>
+      </div>
+      <div class="company-card">
+        <img src="google.jpg" alt="Google" onerror="this.style.display='none'">
+        <span class="company-card-name">Google</span>
+      </div>
+      <div class="company-card">
+        <img src="gold.jpg" alt="Goldman Sachs" onerror="this.style.display='none'">
+        <span class="company-card-name">Goldman Sachs</span>
+      </div>
+      <div class="company-card">
+        <img src="paypal.png" alt="PayPal" onerror="this.style.display='none'">
+        <span class="company-card-name">PayPal</span>
+      </div>
+      <div class="company-card">
+        <img src="dell.png" alt="Dell" onerror="this.style.display='none'">
+        <span class="company-card-name">Dell</span>
+      </div>
+      <div class="company-card">
+        <img src="apple.png" alt="Apple" onerror="this.style.display='none'">
+        <span class="company-card-name">Apple</span>
+      </div>
+      <div class="company-card">
+        <img src="adobe.jpg" alt="Adobe" onerror="this.style.display='none'">
+        <span class="company-card-name">Adobe</span>
+      </div>
+      <div class="company-card">
+        <img src="jp.png" alt="J.P. Morgan" class="company-card-img-lg" onerror="this.style.display='none'">
+        <span class="company-card-name">J.P. Morgan</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS YOU'LL GAIN -->
+<section class="py-16 bg-white">
+  <div class="container-x">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <span class="section-label"><i data-lucide="graduation-cap" style="width:11px;height:11px"></i> Skills You'll Gain</span>
+      <h2 class="mt-4 text-[26px] md:text-[30px] font-bold" style="color:var(--ink)">Everything you need to market with confidence</h2>
+      <p class="mt-3 text-[14.5px]" style="color:var(--text-muted)">Practical, job-ready skills mapped to what hiring managers actually screen for.</p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5 max-w-5xl mx-auto">
+      <div class="square-card">
+        <div class="icon-wrap"><i data-lucide="search"></i></div>
+        <h4>SEO</h4>
+        <p>Rank pages higher with keyword research and on-page optimization.</p>
+      </div>
+      <div class="square-card">
+        <div class="icon-wrap"><i data-lucide="mouse-pointer-click"></i></div>
+        <h4>Paid Ads (SEM/PPC)</h4>
+        <p>Plan and run Google and Meta ad campaigns that hit a target CPA.</p>
+      </div>
+      <div class="square-card">
+        <div class="icon-wrap"><i data-lucide="share-2"></i></div>
+        <h4>Social Media Marketing</h4>
+        <p>Build content calendars and grow engagement across platforms.</p>
+      </div>
+      <div class="square-card">
+        <div class="icon-wrap"><i data-lucide="pen-tool"></i></div>
+        <h4>Content &amp; Copywriting</h4>
+        <p>Write copy and content that holds attention and drives clicks.</p>
+      </div>
+      <div class="square-card">
+        <div class="icon-wrap"><i data-lucide="mail"></i></div>
+        <h4>Email Marketing</h4>
+        <p>Design lifecycle campaigns that nurture leads into customers.</p>
+      </div>
+      <div class="square-card">
+        <div class="icon-wrap"><i data-lucide="bar-chart-3"></i></div>
+        <h4>Marketing Analytics</h4>
+        <p>Read GA4 and dashboards to know what's actually working.</p>
+      </div>
+      <div class="square-card">
+        <div class="icon-wrap"><i data-lucide="zap"></i></div>
+        <h4>Marketing Automation</h4>
+        <p>Set up workflows that nurture and qualify leads automatically.</p>
+      </div>
+      <div class="square-card">
+        <div class="icon-wrap"><i data-lucide="palette"></i></div>
+        <h4>Brand &amp; Campaign Strategy</h4>
+        <p>Plan campaigns that stay consistent across every channel.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CURRICULUM -->
+<section class="py-16" style="background:var(--surface)">
+  <div class="container-x">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <span class="section-label"><i data-lucide="clipboard-list" style="width:11px;height:11px"></i> Curriculum</span>
+      <h2 class="mt-4 text-[26px] md:text-[30px] font-bold" style="color:var(--ink)">A six-module syllabus, built in sequence</h2>
+      <p class="mt-3 text-[14.5px]" style="color:var(--text-muted)">Each module builds on the last — from funnel basics to reading real campaign data.</p>
+    </div>
+
+    <div class="max-w-5xl mx-auto rounded-2xl bg-white overflow-hidden" style="border:1px solid var(--line)">
+
+      <div class="flex flex-col md:flex-row md:items-center gap-4 md:gap-8 p-6 md:p-7 border-b" style="border-color:var(--line)">
+        <div class="flex items-center gap-4 md:w-48 shrink-0">
+          <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-[14px] font-bold" style="background:var(--ink);color:#fff">01</span>
+          <span class="text-[11.5px] font-semibold uppercase tracking-[0.06em]" style="color:var(--text-muted)">Week 1</span>
+        </div>
+        <div class="flex-1">
+          <div class="text-[15.5px] font-bold" style="color:var(--ink)">Digital Marketing Fundamentals &amp; Funnel Strategy</div>
+          <p class="text-[13.5px] mt-1" style="color:var(--text-muted)">Understand the marketing funnel and how channels work together to drive conversions.</p>
+        </div>
+        <div class="flex flex-wrap gap-2 md:w-48 shrink-0">
+          <span class="rounded-md px-2.5 py-1 text-[11px] font-semibold" style="background:var(--brand-soft);color:var(--brand)">Marketing Funnel</span>
+          <span class="rounded-md px-2.5 py-1 text-[11px] font-semibold" style="background:var(--brand-soft);color:var(--brand)">Buyer Journey</span>
+        </div>
+      </div>
+
+      <div class="flex flex-col md:flex-row md:items-center gap-4 md:gap-8 p-6 md:p-7 border-b" style="border-color:var(--line)">
+        <div class="flex items-center gap-4 md:w-48 shrink-0">
+          <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-[14px] font-bold" style="background:var(--ink);color:#fff">02</span>
+          <span class="text-[11.5px] font-semibold uppercase tracking-[0.06em]" style="color:var(--text-muted)">Week 2</span>
+        </div>
+        <div class="flex-1">
+          <div class="text-[15.5px] font-bold" style="color:var(--ink)">SEO &amp; Website Optimization</div>
+          <p class="text-[13.5px] mt-1" style="color:var(--text-muted)">Keyword research, on-page SEO, and technical basics that move rankings.</p>
+        </div>
+        <div class="flex flex-wrap gap-2 md:w-48 shrink-0">
+          <span class="rounded-md px-2.5 py-1 text-[11px] font-semibold" style="background:var(--brand-soft);color:var(--brand)">Keyword Research</span>
+          <span class="rounded-md px-2.5 py-1 text-[11px] font-semibold" style="background:var(--brand-soft);color:var(--brand)">On-Page SEO</span>
+        </div>
+      </div>
+
+      <div class="flex flex-col md:flex-row md:items-center gap-4 md:gap-8 p-6 md:p-7 border-b" style="border-color:var(--line)">
+        <div class="flex items-center gap-4 md:w-48 shrink-0">
+          <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-[14px] font-bold" style="background:var(--ink);color:#fff">03</span>
+          <span class="text-[11.5px] font-semibold uppercase tracking-[0.06em]" style="color:var(--text-muted)">Week 3</span>
+        </div>
+        <div class="flex-1">
+          <div class="text-[15.5px] font-bold" style="color:var(--ink)">Paid Advertising (Google &amp; Meta Ads)</div>
+          <p class="text-[13.5px] mt-1" style="color:var(--text-muted)">Set up, run, and optimize paid campaigns against a real budget and target CPA.</p>
+        </div>
+        <div class="flex flex-wrap gap-2 md:w-48 shrink-0">
+          <span class="rounded-md px-2.5 py-1 text-[11px] font-semibold" style="background:var(--brand-soft);color:var(--brand)">Google Ads</span>
+          <span class="rounded-md px-2.5 py-1 text-[11px] font-semibold" style="background:var(--brand-soft);color:var(--brand)">Meta Ads</span>
+        </div>
+      </div>
+
+      <div class="flex flex-col md:flex-row md:items-center gap-4 md:gap-8 p-6 md:p-7 border-b" style="border-color:var(--line)">
+        <div class="flex items-center gap-4 md:w-48 shrink-0">
+          <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-[14px] font-bold" style="background:var(--ink);color:#fff">04</span>
+          <span class="text-[11.5px] font-semibold uppercase tracking-[0.06em]" style="color:var(--text-muted)">Week 4</span>
+        </div>
+        <div class="flex-1">
+          <div class="text-[15.5px] font-bold" style="color:var(--ink)">Social Media &amp; Content Marketing</div>
+          <p class="text-[13.5px] mt-1" style="color:var(--text-muted)">Plan content calendars, write copy, and manage communities that engage.</p>
+        </div>
+        <div class="flex flex-wrap gap-2 md:w-48 shrink-0">
+          <span class="rounded-md px-2.5 py-1 text-[11px] font-semibold" style="background:var(--brand-soft);color:var(--brand)">Content Calendar</span>
+          <span class="rounded-md px-2.5 py-1 text-[11px] font-semibold" style="background:var(--brand-soft);color:var(--brand)">Community Mgmt</span>
+        </div>
+      </div>
+
+      <div class="flex flex-col md:flex-row md:items-center gap-4 md:gap-8 p-6 md:p-7 border-b" style="border-color:var(--line)">
+        <div class="flex items-center gap-4 md:w-48 shrink-0">
+          <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-[14px] font-bold" style="background:var(--ink);color:#fff">05</span>
+          <span class="text-[11.5px] font-semibold uppercase tracking-[0.06em]" style="color:var(--text-muted)">Week 5</span>
+        </div>
+        <div class="flex-1">
+          <div class="text-[15.5px] font-bold" style="color:var(--ink)">Email Marketing &amp; Automation</div>
+          <p class="text-[13.5px] mt-1" style="color:var(--text-muted)">Build lifecycle email flows and automation sequences that nurture leads.</p>
+        </div>
+        <div class="flex flex-wrap gap-2 md:w-48 shrink-0">
+          <span class="rounded-md px-2.5 py-1 text-[11px] font-semibold" style="background:var(--brand-soft);color:var(--brand)">Email Campaigns</span>
+          <span class="rounded-md px-2.5 py-1 text-[11px] font-semibold" style="background:var(--brand-soft);color:var(--brand)">Automation Flows</span>
+        </div>
+      </div>
+
+      <div class="flex flex-col md:flex-row md:items-center gap-4 md:gap-8 p-6 md:p-7">
+        <div class="flex items-center gap-4 md:w-48 shrink-0">
+          <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-[14px] font-bold" style="background:var(--ink);color:#fff">06</span>
+          <span class="text-[11.5px] font-semibold uppercase tracking-[0.06em]" style="color:var(--text-muted)">Week 6</span>
+        </div>
+        <div class="flex-1">
+          <div class="text-[15.5px] font-bold" style="color:var(--ink)">Analytics, Reporting &amp; Campaign Optimization</div>
+          <p class="text-[13.5px] mt-1" style="color:var(--text-muted)">Use GA4 and dashboards to report on ROI and continuously improve campaigns.</p>
+        </div>
+        <div class="flex flex-wrap gap-2 md:w-48 shrink-0">
+          <span class="rounded-md px-2.5 py-1 text-[11px] font-semibold" style="background:var(--brand-soft);color:var(--brand)">GA4</span>
+          <span class="rounded-md px-2.5 py-1 text-[11px] font-semibold" style="background:var(--brand-soft);color:var(--brand)">Campaign ROI</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="py-20" style="background:var(--surface)">
+  <div class="container-x">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <span class="section-label"><i data-lucide="tag" style="width:11px;height:11px"></i> Plans &amp; Pricing</span>
+      <h2 class="mt-4 text-[28px] md:text-[34px] font-bold" style="color:var(--ink)">Choose the plan that fits your goals</h2>
+      <p class="mt-3 text-[15px]" style="color:var(--text-muted)">All plans include our zero-upfront pay-after-placement model — pick the pace and pricing structure that works for you.</p>
+    </div>
+
+    <div id="pricing-container" class="grid gap-7 md:grid-cols-3 max-w-6xl mx-auto items-start">
+
+      <!-- Plan 1: Pay Before Placement -->
+      <div class="pricing-card">
+        <div class="pricing-head">
+          <span class="plan-pill">Plan 1</span>
+          <div class="plan-name">Pay Before Placement</div>
+          <div class="plan-tagline">Full refund if you don't get placed</div>
+          <div class="price-row">
+            <span class="price">₹55,000/-</span>
+            <span class="price-sub">one-time</span>
+          </div>
+        </div>
+        <div class="pricing-body">
+          <p class="lead-in">Get a <b>fully refundable</b> placement guarantee with no ongoing fees</p>
+          <ul>
+            <li><span class="check-dot"><i data-lucide="check-circle-2"></i></span> Fully refundable if you don't secure a job above 6 LPA</li>
+            <li><span class="check-dot"><i data-lucide="check-circle-2"></i></span> Unlimited referrals to top marketing teams &amp; agencies</li>
+            <li><span class="check-dot"><i data-lucide="check-circle-2"></i></span> Premium Naukri, Hirit &amp; Cut-short accounts</li>
+            <li><span class="check-dot"><i data-lucide="check-circle-2"></i></span> Comprehensive profile &amp; portfolio building</li>
+            <li><span class="check-dot"><i data-lucide="check-circle-2"></i></span> 2.5x faster hiring speed than regular Pay Later</li>
+            <li><span class="check-dot"><i data-lucide="check-circle-2"></i></span> All placement features included</li>
+          </ul>
+        </div>
+        <div class="cta-wrap">
+          <button class="w-full rounded-xl" style="background:var(--ink); color:#fff;">Get Started</button>
+        </div>
+      </div>
+
+      <!-- Plan 2: Pay After Placement + (Most Popular) -->
+      <div class="pricing-card popular">
+        <div class="pricing-head popular-head">
+          <span class="most-popular-badge">MOST POPULAR</span>
+          <span class="plan-pill">Plan 2</span>
+          <div class="plan-name">Pay After Placement +</div>
+          <div class="plan-tagline">Fastest track, priority referrals</div>
+          <div class="price-row">
+            <span class="price">₹15,300/-</span>
+            <span class="price-sub">registration fee</span>
+          </div>
+        </div>
+        <div class="pricing-body">
+          <p class="lead-in">Everything in Plan 3, plus <b>priority speed &amp; unlimited referrals</b></p>
+          <ul>
+            <li><span class="check-dot"><i data-lucide="check-circle-2"></i></span> Registration fee of only INR 15,300/-</li>
+            <li><span class="check-dot"><i data-lucide="check-circle-2"></i></span> Pay 90,000/- after securing a job above 6 LPA</li>
+            <li><span class="check-dot"><i data-lucide="check-circle-2"></i></span> Unlimited referrals to top marketing teams &amp; agencies</li>
+            <li><span class="check-dot"><i data-lucide="check-circle-2"></i></span> Premium Naukri, Hirit &amp; Cut-short accounts</li>
+            <li><span class="check-dot"><i data-lucide="check-circle-2"></i></span> Comprehensive profile &amp; portfolio building</li>
+            <li><span class="check-dot"><i data-lucide="check-circle-2"></i></span> 2.5x faster hiring speed than regular Pay Later</li>
+            <li><span class="check-dot"><i data-lucide="check-circle-2"></i></span> All placement features included</li>
+          </ul>
+        </div>
+        <div class="cta-wrap">
+          <button class="btn-brand w-full rounded-xl">Get Started — Recommended</button>
+        </div>
+      </div>
+
+      <!-- Plan 3: Pay After Placement -->
+      <div class="pricing-card">
+        <div class="pricing-head">
+          <span class="plan-pill">Plan 3</span>
+          <div class="plan-name">Pay After Placement</div>
+          <div class="plan-tagline">Start with a low registration fee</div>
+          <div class="price-row">
+            <span class="price">₹9,500/-</span>
+            <span class="price-sub">registration fee</span>
+          </div>
+        </div>
+        <div class="pricing-body">
+          <p class="lead-in">The <b>lowest upfront cost</b> way to start the program</p>
+          <ul>
+            <li><span class="check-dot"><i data-lucide="check-circle-2"></i></span> Registration fee of only INR 9,500/-</li>
+            <li><span class="check-dot"><i data-lucide="check-circle-2"></i></span> Pay 1.25 Lakhs after securing a job above 6 LPA</li>
+            <li><span class="check-dot"><i data-lucide="check-circle-2"></i></span> Standard referrals to partner companies</li>
+            <li><span class="check-dot"><i data-lucide="check-circle-2"></i></span> Premium Naukri, Hirit &amp; Cut-short accounts</li>
+            <li><span class="check-dot"><i data-lucide="check-circle-2"></i></span> Profile &amp; portfolio building support</li>
+            <li><span class="check-dot"><i data-lucide="check-circle-2"></i></span> Standard hiring speed with placement support</li>
+            <li><span class="check-dot"><i data-lucide="check-circle-2"></i></span> All placement features included</li>
+          </ul>
+        </div>
+        <div class="cta-wrap">
+          <button class="w-full rounded-xl" style="background:var(--ink); color:#fff;">Get Started</button>
+        </div>
+      </div>
+
+    </div>
+    <p class="pricing-note"><i data-lucide="info" style="width:12px;height:12px;vertical-align:-1px"></i> LPA = Lakhs Per Annum. Every plan includes full placement support — the difference is when and how you pay.</p>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="hero-gradient py-16">
+  <div class="container-x text-center max-w-2xl mx-auto relative">
+    <h3 class="text-[24px] md:text-[28px] font-bold text-white">Have questions about this program?</h3>
+    <p class="mt-3 text-[14.5px] text-white/85">Talk to our team and get a clear picture of the curriculum, timelines, and placement process.</p>
+    <a href="schedule-call.html" class="mt-6 inline-flex items-center gap-2 rounded-full px-6 py-3 text-[14px] font-semibold" style="background:#fff;color:var(--brand)">
+      <i data-lucide="phone"></i> Schedule Call
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:var(--ink);color:rgba(255,255,255,.7)">
+  <div class="container-x py-10 text-center text-[13px]">
+    &copy; 2026 CareerLaunchpad &middot; <a href="index.html" class="hover:text-white">Home</a>
+  </div>
+</footer>
+
+<script>
+  lucide.createIcons();
+  window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('shadow-lg',scrollY>8)},{passive:true});
+</script>
+</body>
+</html>
